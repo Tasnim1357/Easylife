@@ -17,7 +17,7 @@ const Navbar = () => {
 //   };
     const Navlinks1=<>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/'>Home</Link></li>
-       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/allarts'>Join as Employee</Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/joinemployee'>Join as Employee</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>Join as HR Manager</Link></li>
     </>
     // const userSignOut=()=>{
