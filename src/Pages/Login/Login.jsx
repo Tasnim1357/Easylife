@@ -6,7 +6,6 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import Lottie from 'lottie-react';
 // import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../Provider/AuthProvider';
 const Login = () => {

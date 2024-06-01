@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../../public/download.svg'
 import useRole from '../../../Hooks/useRole';
+import { AuthContext } from '../../Provider/AuthProvider';
 // import { AuthContext } from '../../Provider/AuthProvider';
 // import { ThemeContext } from '../../Root/Root';
 // import { MdOutlineWbSunny } from "react-icons/md";
@@ -9,7 +10,8 @@ import useRole from '../../../Hooks/useRole';
 
 
 const Navbar = () => {
-//   const {user,logOut}=useContext(AuthContext)
+  const {user,logOut}=useContext(AuthContext)
+ 
 //   const{handleTheme,theme}=useContext(ThemeContext)
 
 const [role]=useRole()
@@ -27,13 +29,15 @@ console.log(role)
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/joinemployee'> My Requested Assets </Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>Request for an Asset  </Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>My Team</Link></li>
+  
+
 
     </>
-    // const userSignOut=()=>{
-    //   logOut()
-    //   .then()
-    //   .catch()
-    // }
+    const userSignOut=()=>{
+      logOut()
+      .then()
+      .catch()
+    }
 
   
 
@@ -101,29 +105,18 @@ console.log(role)
           </ul>
         </div>
         <div className="navbar-end hidden lg:flex space-x-4">
-        <Link to='/login' className='btn font-lato bg-[#ECA300] text-[#2D394B] duration-500 hover:text-[#ECA300] hover:bg-[#2D394B] font-base text-xl '>Login</Link>
-          {/* {
-              user && <div className="dropdown dropdown-hover mr-4  dark:text-white">
-            <img src={user.photoURL} alt="" className='w-[50px] h-[50px] rounded-full border-2 p-1 border-yellow-600'/>
-              <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 dark:bg-black shadow bg-base-100 rounded-box w-52">
-                <li><a>{user.displayName}</a></li>
-                <li><Link to='/login' className="btn font-lato bg-[#ECA300] text-[#2D394B] duration-500 hover:text-[#ECA300] hover:bg-[#2D394B] font-base text-xl" onClick={ userSignOut} >Logout</Link></li>
-              
-              </ul>
-            </div>
-              
-            }
+      
          
 
       {
-          user ?  
-          <Link to='/login' className='btn font-lato bg-[#ECA300] text-[#2D394B] duration-500 hover:text-[#AF9F7B] hover:bg-[#2D394B] font-base text-xl hidden '>Login</Link>
+          user?  
+          <Link  className='btn font-lato bg-[#ECA300] text-white duration-500 hover:text-[#AF9F7B] hover:bg-[#2D394B] font-base text-xl'><button onClick={userSignOut}>LogOut</button></Link>
         : 
-        <Link to='/login' className='btn font-lato bg-[#AF9F7B] text-[#2D394B] duration-500 hover:text-[#AF9F7B] hover:bg-[#2D394B] font-base text-xl '>Login</Link>
+        <Link to='/login' className='btn font-lato bg-[#ECA300] text-[#2D394B] duration-500 hover:text-[#AF9F7B] hover:bg-[#2D394B] font-base text-xl '>Login</Link>
       
         }
        
-        <Link to='/register' className='btn font-lato bg-[#AF9F7B] text-[#2D394B] duration-500 hover:text-[#AF9F7B] hover:bg-[#2D394B] font-base text-lg '>Register</Link> */}
+     
          </div> 
          
        
