@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
+const image_hosting_key= import.meta.env.VITE_IMAGE_HOSTING_KEY
+const image_hosting_api= `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 // import { Helmet } from 'react-helmet-async';
 
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { AuthContext } from '../Provider/AuthProvider';
 const JoinEmployee = () => {
-// const {createUser,profile,setLoading}=useContext(AuthContext)
+const {createUser,profile,setLoading}=useContext(AuthContext)
 const [showPassword,setShowPassword]=useState(false)
     const { register, handleSubmit, formState: { errors },reset} = useForm();
   
@@ -28,23 +32,61 @@ const [showPassword,setShowPassword]=useState(false)
             const {data1}=axios.put('http://localhost:5000/user',currentUser)
             return data1
         }
+        
         try {
          
-            const { name, Photo, Email, password,dob } = data;
+            const { name, image, Email, password,dob } = data;
 
             saveUser(data)
-              
-            // await createUser(Email, password);
-           
-            // await profile(name, Photo);
-            // setLoading(false)
-        
-            reset();
 
             console.log(data)
-
+          
+            const imageFile={image:data.image[0]}
+            // image upload to imgbb and get an url
+            const res= await axios.post(image_hosting_api,imageFile,{
+                headers:{
+                    'content-type': 'multipart/form-data'
+                }
+            });
+            if(res.data.success){
+                const employee={
+                    name:name,
+                    email:Email,
+                    dob: dob,
+                    image:res.data.data.display_url,
+                  
+        
+                }
+             
+                await createUser(Email, password);
+           
+            await profile(name,res.data.data.display_url);
             toast.success("User created successfully");
-        } catch (error) {
+           
+                const menuRes=await axios.put('http://localhost:5000/employee',employee);
+                console.log(menuRes.data)
+                if(menuRes.data.modifiedCount){
+                    // show success pop up
+        setLoading(false)
+           reset()
+            Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${data.name} is added to the employee`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+                }
+            }
+            console.log('with image url',res.data)
+            
+
+           
+        }
+    
+
+          
+        catch (error) {
             console.error(error);
             toast.error(error.message);
         }
@@ -80,11 +122,11 @@ const [showPassword,setShowPassword]=useState(false)
                   <input type="date" placeholder="Date of Birth"  className='w-full p-3 border-b-2 border-black outline-none' {...register("dob", {required: true})} /> 
                   {errors.Email && <p role="alert" className='text-red-600 text-lg'>Please give valid Date of Birth</p>}
               </div>
-              {/* <div>
-                  <label htmlFor="" className='dark:text-white'>photo URL</label> <br />
-                  <input type="file" placeholder="Photo"  className='w-full p-3 border-b-2 border-black outline-none' {...register("Photo",{required:true})} />
+              <div>
+                  <label htmlFor="" className='dark:text-white'>Photo</label> <br />
+                  <input type="file" placeholder="Photo"  className='w-full p-3 border-b-2 border-black outline-none' {...register("image",{required:true})} />
                   {errors.Photo && <p role="alert" className='text-red-600 text-lg'>This field required</p>}
-              </div> */}
+              </div>
               <div className='relative'>
                   <label htmlFor="" className='dark:text-white'>Password</label> <br />
                   <input 
