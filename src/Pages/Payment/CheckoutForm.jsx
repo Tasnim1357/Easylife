@@ -15,22 +15,11 @@ const CheckoutForm = () => {
     const {user}=useContext(AuthContext)
     const elements = useElements();
     const navigate=useNavigate();
-    const [pack,refetch]=usePackage()
+    const [pack]=usePackage()
        
     const parts = pack.split('$');
     const totalPrice = parts.length > 1 ? parseInt(parts[1], 10) : null;
     
-    // useEffect( () => {
-    //     // Create PaymentIntent as soon as the page loads
-    //     if(totalPrice>0){
-    //         axios.post("http://localhost:5000/create-payment-intent", {price: totalPrice})
-    //         .then((res) => {
-    //           console.log(res.data.clientSecret);
-    //           setClientSecret(res.data.clientSecret);
-    //         })
-    //     }
-     
-    //   }, [axios,totalPrice])
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -86,38 +75,7 @@ const CheckoutForm = () => {
         }
     })
 
-    // if(confirmError){
-    //     console.log('confirm error')
-    // }else{
-    //     console.log('payment-intent',paymentIntent)
-    //     if(paymentIntent.status === 'succeeded'){
-    //         console.log('transaction id',paymentIntent.id);
-    //         setTransactionId(paymentIntent.id)
-    //         // now save the payment in the database
-    //         const payment={
-    //             email: user.email,
-    //             price:totalPrice,
-    //             transactionId: paymentIntent.id,
-    //             date: new Date(), //utc date convert. use moment js to
-                
-    //             status: 'pending'
-    //         }
-
-    //         const res= await axios.post('http://localhost:5000/payments',payment);
-    //         console.log('payment saved',res.data);
-    //         // refetch();
-    //         if(res.data?.paymentResult?.insertedId){
-    //             Swal.fire({
-    //                 position: "top-end",
-    //                 icon: "success",
-    //                 title: "Thank you for the Payment",
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //               });
-    //               navigate('/')
-    //         }
-    //     }
-    // }
+    
   
   
 
@@ -155,7 +113,7 @@ const CheckoutForm = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                // refetch();
+          
                 navigate('/');
             }
         } catch (saveError) {
@@ -195,6 +153,7 @@ const CheckoutForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
+            <h2 className='text-2xl font-semibold text-center mb-3'>You have to pay:${totalPrice}</h2>
         <CardElement
    options={{
      style: {
