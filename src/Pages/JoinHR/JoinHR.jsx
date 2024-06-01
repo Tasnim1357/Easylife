@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -16,6 +16,7 @@ const JoinHR = () => {
 const {createUser,profile,setLoading}=useContext(AuthContext)
 const [showPassword,setShowPassword]=useState(false)
     const { register, handleSubmit, formState: { errors },reset} = useForm();
+    const navigate=useNavigate()
 
 
     const uploadImage = async (imageFile) => {
@@ -130,9 +131,11 @@ const [showPassword,setShowPassword]=useState(false)
             await createUser(Email, password);
             await profile(name, userPhotoUrl);
             toast.success("User created successfully");
+            
 
             const menuRes = await axios.put('http://localhost:5000/hr', hr);
             console.log(menuRes.data);
+            navigate('/payment')
             if (menuRes.data.modifiedCount) {
                 setLoading(false);
                 reset();

@@ -15,7 +15,7 @@ const Navbar = () => {
 //   const{handleTheme,theme}=useContext(ThemeContext)
 
 const [role]=useRole()
-console.log(role)
+// console.log(role)
 //   const handleThemeToggle = () => {
 //     handleTheme(theme === 'dark' ? 'light' : 'dark');
 //   };
