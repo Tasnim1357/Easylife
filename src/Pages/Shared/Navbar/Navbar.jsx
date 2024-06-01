@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../../public/download.svg'
+import useRole from '../../../Hooks/useRole';
 // import { AuthContext } from '../../Provider/AuthProvider';
 // import { ThemeContext } from '../../Root/Root';
 // import { MdOutlineWbSunny } from "react-icons/md";
@@ -11,7 +12,8 @@ const Navbar = () => {
 //   const {user,logOut}=useContext(AuthContext)
 //   const{handleTheme,theme}=useContext(ThemeContext)
 
-
+const [role]=useRole()
+console.log(role)
 //   const handleThemeToggle = () => {
 //     handleTheme(theme === 'dark' ? 'light' : 'dark');
 //   };
@@ -19,6 +21,13 @@ const Navbar = () => {
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/'>Home</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/joinemployee'>Join as Employee</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>Join as HR Manager</Link></li>
+    </>
+    const Navlinks2=<>
+      <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/'>Home</Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/joinemployee'> My Requested Assets </Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>Request for an Asset  </Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>My Team</Link></li>
+
     </>
     // const userSignOut=()=>{
     //   logOut()
@@ -75,7 +84,9 @@ const Navbar = () => {
         </div>
         <div className="navbar-center hidden lg:flex w-[67%]">
           <ul className="menu menu-horizontal px-1 dark:text-white">
-          {Navlinks1}
+          {
+            role==='employee'? Navlinks2: Navlinks1
+          }
           {/* <li>
         
         <label className="cursor-pointer grid place-items-center ">
