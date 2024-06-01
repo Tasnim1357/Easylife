@@ -45,13 +45,13 @@ const navigate=useNavigate()
     return (
    <div>
     
-     <div className='flex justify-around md:flex-row flex-col gap-1'>
+     <div className='flex justify-around md:flex-row flex-col gap-5'>
          {/* <Helmet>
             <title>ArtRoof | Login</title>
           </Helmet> */}
       
-    <div>
-    <img src="https://i.ibb.co/sVm6CYB/images-q-tbn-ANd9-Gc-QSlspm1-Ew-WL1z-Wdjd-Tleh3-Ra-FWaae21-Od-Oyw-s.jpg" alt="" />
+    <div className='md:w-1/2 w-full'>
+    <img src="https://i.ibb.co/Kx0PfxQ/office-workers-cartoon-color-characters-vector-25602546.jpg" className='w-full h-full' alt="" />
     </div>
     <div className='md:w-1/2 w-full -mt-6'>
     <div className='flex justify-center items-center md:mt-16 mt-2'>
@@ -87,8 +87,8 @@ const navigate=useNavigate()
                 </div>
       
 
-      <input type="submit" value="Sign In"   className='btn w-full  sm:text-2xl text-balance font-lato  bg-[#AF9F7B] text-[#2D394B] duration-500 hover:text-[#AF9F7B] hover:bg-[#2D394B]'/>
-      <p className='dark:text-white'>Do not have an account?Please <Link to='/register' className='btn-link text-lg font-sora font-bold'>Register</Link></p>
+      <input type="submit" value="Sign In"   className='btn w-full  sm:text-2xl text-balance font-lato  bg-[#ECA300] text-[#2D394B] duration-500 hover:text-white hover:bg-[#2D394B]'/>
+      <p className='dark:text-white'>Do not have an account?Please Sign up as an  <Link to='/joinemployee' className='btn-link text-lg font-sora font-bold'>Employee</Link></p>
     </form>
   
      </div>

@@ -125,7 +125,7 @@ const [showPassword,setShowPassword]=useState(false)
               <div>
                   <label htmlFor="" className='dark:text-white'>Photo</label> <br />
                   <input type="file" placeholder="Photo"  className='w-full p-3 border-b-2 border-black outline-none' {...register("image",{required:true})} />
-                  {errors.Photo && <p role="alert" className='text-red-600 text-lg'>This field required</p>}
+                  {errors.image && <p role="alert" className='text-red-600 text-lg'>This field required</p>}
               </div>
               <div className='relative'>
                   <label htmlFor="" className='dark:text-white'>Password</label> <br />
