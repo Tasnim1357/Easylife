@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -11,10 +11,12 @@ const image_hosting_api= `https://api.imgbb.com/1/upload?key=${image_hosting_key
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../Provider/AuthProvider';
+import { FcGoogle } from 'react-icons/fc';
 const JoinEmployee = () => {
-const {createUser,profile,setLoading}=useContext(AuthContext)
+const {createUser,profile,setLoading,goolgeLogin}=useContext(AuthContext)
 const [showPassword,setShowPassword]=useState(false)
     const { register, handleSubmit, formState: { errors },reset} = useForm();
+    const location=useLocation()
   
 
     const onSubmit = async (data) => {
@@ -92,6 +94,61 @@ const [showPassword,setShowPassword]=useState(false)
         }
     };
 
+
+
+    const socialLogin= (social)=>{
+        
+        social()
+        .then(async(result)=>{
+
+            console.log(result.user)
+            // save user to database
+
+        const saveUser=async data=>{
+
+            const currentUser={
+                email: data.email,
+                role: 'employee'
+
+            }
+            const {data1}=axios.put('http://localhost:5000/user',currentUser)
+            return data1
+        }
+        saveUser(result.user)
+            
+            toast.success("User Logged in Successfully")
+            const employee={
+                name:result.user.displayName,
+                email:result.user.email,
+                dob: null,
+                image:result.user.photoURL,
+              
+    
+            }
+            const menuRes=await axios.put('http://localhost:5000/employee',employee);
+                console.log(menuRes.data)
+                if(menuRes.data.modifiedCount){
+                    // show success pop up
+        setLoading(false)
+           reset()
+            Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${result.user.displayName} is added to the employee`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+        Navigate(location?.state? location.state:'/')
+                }
+         
+            
+        })
+        .catch(error=>{
+            console.log(error)
+            toast.warn(error.message +'Give valid email and password')
+        })
+      }
+
     return (
     <div >
          {/* <Helmet>
@@ -158,6 +215,10 @@ const [showPassword,setShowPassword]=useState(false)
         </form>
       
          </div>
+         <div className='border-2 p-3 rounded-3xl text-center w-full  md:w-full lg:w-1/2 mx-auto mt-4 border-gray-300 flex justify-center items-center space-x-4 duration-500 hover:bg-[#6e85d5] hover:border hover:border-green-600 cursor-pointer'>
+     <FcGoogle className='text-2xl' />
+      <h1 className='font-bold text-[#2F3D7E] font-sora text-center  text-sm sm:text-base dark:text-white ' onClick={()=>socialLogin(goolgeLogin)}>Continue With Google</h1>
+     </div>
          </div>
       </div>
      
