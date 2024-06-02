@@ -37,7 +37,7 @@ const [role]=useRole()
     const Navlinks3=<>
       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/'>Home</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/joinemployee'> Asset List</Link></li>
-       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>Add an Asset</Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/addasset'>Add an Asset</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>All Requests</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>My Employee List</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>Custom Request List</Link></li>

@@ -5,6 +5,7 @@ import JoinEmployee from "../Pages/JoinEmployee/JoinEmployee";
 import Login from "../Pages/Login/Login";
 import JoinHR from "../Pages/JoinHR/JoinHR";
 import Payment from "../Pages/Payment/Payment";
+import AddAsset from "../Pages/HRManager/AddAsset/AddAsset";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
         {
           path:'/payment',
           element:<Payment></Payment>
+        },
+        {
+          path:'/addasset',
+          element:<AddAsset></AddAsset>
+
         }
 
       ]
