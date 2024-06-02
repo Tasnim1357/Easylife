@@ -7,6 +7,7 @@ import JoinHR from "../Pages/JoinHR/JoinHR";
 import Payment from "../Pages/Payment/Payment";
 import AddAsset from "../Pages/HRManager/AddAsset/AddAsset";
 import Assetlist from "../Pages/HRManager/AssetList/Assetlist";
+import UpdateAsset from "../Pages/HRManager/Updateasset/UpdateAsset";
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
         {
           path:'/assets',
           element:<Assetlist></Assetlist>
+        },
+        {
+          path:'/update/:id',
+          element:<UpdateAsset></UpdateAsset>,
+          loader: ({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
         }
 
       ]
