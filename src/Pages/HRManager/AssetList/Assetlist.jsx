@@ -6,11 +6,12 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
+import useAxiosSecure from './../../../Hooks/useAxiosSecure';
 
 
 const Assetlist = () => {
    
-
+ const axiosSecure= useAxiosSecure()
     const {user,loading}=useContext(AuthContext)
     const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('');
@@ -28,7 +29,7 @@ const Assetlist = () => {
     queryKey: ['assets', user?.email, current, itemsPerPage],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-        const { data } = await axios.get(`http://localhost:5000/assets`, {
+        const { data } = await axiosSecure.get(`/assets`, {
             params: { page: current, size: itemsPerPage }
         });
         return data;
@@ -84,7 +85,7 @@ useEffect(() => {
           if (result.isConfirmed) {
 
 
-            const res= await axios.delete(`http://localhost:5000/assets/${item._id}`);
+            const res= await axiosSecure.delete(`/assets/${item._id}`);
             console.log(res.data)
       
                 if(res.data.deletedCount>0){

@@ -3,12 +3,13 @@ import { useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
 import axios from 'axios';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const UpdateAsset = () => {
     const asset=useLoaderData()
     const {user}=useContext(AuthContext)
     console.log(asset)
-
+ const axiosSecure=useAxiosSecure()
     const handleUpdate= async(e)=>{
         e.preventDefault()
         const form =e.target;
@@ -21,24 +22,8 @@ const UpdateAsset = () => {
         const newAsset={name,creator,type,quantity,date,status}
         console.log(newAsset)
 
-        // fetch('http://localhost:5000/asset',{
-        //     method:'POST',
-        //     headers:{'content-type': 'application/json'},
-        //     body: JSON.stringify(newAsset)
-        // })
-        // .then(res=> res.json())
-        // .then(data =>{
-        //     console.log(data)
-        //     if(data.insertedId){
-        //         Swal.fire({
-        //             title: "Great!",
-        //             text: "You added the Product!",
-        //             icon: "success"
-        //           });
-        //     }
-        // })
-
-        const assetRes=await axios.patch(`http://localhost:5000/assets/${asset._id}`,newAsset)
+       
+        const assetRes=await axiosSecure.patch(`/assets/${asset._id}`,newAsset)
         console.log(assetRes.data);
         if(assetRes.data.modifiedCount >0){
             Swal.fire({
