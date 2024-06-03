@@ -11,8 +11,9 @@ import { AuthContext } from '../Provider/AuthProvider';
 const Login = () => {
   const {createLogin,goolgeLogin}=useContext(AuthContext)
   const [showPassword,setShowPassword]=useState(false)
-const location=useLocation()
-const navigate=useNavigate()
+  const navigate=useNavigate();
+  const location=useLocation();
+  const from=location.state?.from?.pathname || "/";
   const { register, handleSubmit, formState: { errors },reset } = useForm();
     const onSubmit = data =>{
         const {Email,password}=data
@@ -35,7 +36,7 @@ const navigate=useNavigate()
         .then((result)=>{
             console.log(result.user)
             toast.success("User Logged in Successfully")
-            navigate(location?.state? location.state:'/')
+            navigate(from,{replace:true})
         })
         .catch(error=>{
             console.log(error)

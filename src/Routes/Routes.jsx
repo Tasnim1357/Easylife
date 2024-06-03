@@ -8,6 +8,7 @@ import Payment from "../Pages/Payment/Payment";
 import AddAsset from "../Pages/HRManager/AddAsset/AddAsset";
 import Assetlist from "../Pages/HRManager/AssetList/Assetlist";
 import UpdateAsset from "../Pages/HRManager/Updateasset/UpdateAsset";
+import AdminRoute from "./Private/AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -32,20 +33,19 @@ const router = createBrowserRouter([
         },
         {
           path:'/payment',
-          element:<Payment></Payment>
+          element:<AdminRoute><Payment></Payment></AdminRoute>
         },
         {
           path:'/addasset',
-          element:<AddAsset></AddAsset>
-
+          element:<AdminRoute><AddAsset></AddAsset></AdminRoute>
         },
         {
           path:'/assets',
-          element:<Assetlist></Assetlist>
+          element:<AdminRoute><Assetlist></Assetlist></AdminRoute>
         },
         {
           path:'/update/:id',
-          element:<UpdateAsset></UpdateAsset>,
+          element:<AdminRoute><UpdateAsset></UpdateAsset></AdminRoute>,
           loader: ({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
         }
 
