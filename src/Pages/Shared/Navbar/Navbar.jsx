@@ -29,8 +29,8 @@ const [role]=useRole()
     </>
     const Navlinks2=<>
       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/'>Home</Link></li>
-       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/joinemployee'> My Requested Assets </Link></li>
-       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>Request for an Asset  </Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/myrequest'> My Requested Assets </Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/req'>Request for an Asset  </Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/arts'>My Team</Link></li>
 
     </>

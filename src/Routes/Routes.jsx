@@ -9,6 +9,10 @@ import AddAsset from "../Pages/HRManager/AddAsset/AddAsset";
 import Assetlist from "../Pages/HRManager/AssetList/Assetlist";
 import UpdateAsset from "../Pages/HRManager/Updateasset/UpdateAsset";
 import AdminRoute from "./Private/AdminRoute";
+import ReqAsset from "../Pages/Employee/RequuestAsset/ReqAsset";
+import { GiPrivate } from "react-icons/gi";
+import Private from './Private/Private';
+import MyRequest from "../Pages/Employee/My Requested/MyRequest";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +51,14 @@ const router = createBrowserRouter([
           path:'/update/:id',
           element:<AdminRoute><UpdateAsset></UpdateAsset></AdminRoute>,
           loader: ({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
+        },
+        {
+          path:'/req',
+          element:<ReqAsset></ReqAsset>
+        },
+        {
+          path: '/myrequest',
+          element:<Private><MyRequest></MyRequest></Private>
         }
 
       ]

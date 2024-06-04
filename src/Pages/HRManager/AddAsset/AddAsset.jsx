@@ -11,7 +11,7 @@ const AddAsset = () => {
         const name=form.name.value;
         const creator=user?.email;
         const type=form.type.value;
-        const quantity=form.quantity.value;
+        const quantity=parseInt(form.quantity.value);
         const date=form.date.value;
         const status=form.status.value;
         console.log(name.title)
