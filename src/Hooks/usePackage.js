@@ -16,15 +16,16 @@ const usePackage = () => {
     queryFn: async () => {
         const response = await axios.get(`http://localhost:5000/hr/${user?.email}`)
         // Return both package1 and companyLogo
-        return { package1: response.data.package1, companyLogo: response.data.companyLogo }
+        return { package1: response.data.package1, companyLogo: response.data.companyLogo,company:response.data.company }
     },
   })
 
   const pack = data?.package1 || ''
     const img = data?.companyLogo || ''
+    const companyName = data?.company || ''
 
  
-    return [pack, img, isLoading, refetch]
+    return [pack, img,companyName, isLoading, refetch]
   //   Fetch user info using logged in user email
 
 //   return [pack,img, isLoading,refetch]

@@ -93,18 +93,7 @@ const MyRequest = () => {
         });
       }
    const handlereturn=async(request)=>{
-    // const response= await axiosSecure.patch(`/request/${request._id}`,{status1:'returned'})
-    //         if(response.data.modifiedCount > 0){
-    //           Swal.fire({
-    //             title: "Great!",
-    //             text: "You successfully returned the request!",
-    //             icon: "success"
-    //           });
-            
-    //     }
-
-    //     const response1=axiosSecure.patch(`/asset/${request.assetId}`,{quantity:quantity+1})
-               
+  
 
 
     try {

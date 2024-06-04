@@ -13,6 +13,8 @@ import ReqAsset from "../Pages/Employee/RequuestAsset/ReqAsset";
 import { GiPrivate } from "react-icons/gi";
 import Private from './Private/Private';
 import MyRequest from "../Pages/Employee/My Requested/MyRequest";
+import AllRequest from "../Pages/HRManager/AllRequest/AllRequest";
+import AddEmployee from "../Pages/HRManager/AddEmployee/AddEmployee";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
         {
           path:'/assets',
           element:<AdminRoute><Assetlist></Assetlist></AdminRoute>
+        },
+        {
+          path:'/allreq',
+          element:<AdminRoute><AllRequest></AllRequest></AdminRoute>
+        },
+        {
+          path:'/addemp',
+          element:<AdminRoute><AddEmployee></AddEmployee></AdminRoute>
         },
         {
           path:'/update/:id',
