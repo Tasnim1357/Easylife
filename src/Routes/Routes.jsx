@@ -15,6 +15,8 @@ import Private from './Private/Private';
 import MyRequest from "../Pages/Employee/My Requested/MyRequest";
 import AllRequest from "../Pages/HRManager/AllRequest/AllRequest";
 import AddEmployee from "../Pages/HRManager/AddEmployee/AddEmployee";
+import MyEmployee from "../Pages/HRManager/Myemployee/MyEmployee";
+import MyTeam from "../Pages/Employee/MyTeam/MyTeam";
 
 const router = createBrowserRouter([
     {
@@ -58,17 +60,25 @@ const router = createBrowserRouter([
           element:<AdminRoute><AddEmployee></AddEmployee></AdminRoute>
         },
         {
+          path:'/myemp',
+          element: <AdminRoute><MyEmployee></MyEmployee></AdminRoute>
+        },
+        {
           path:'/update/:id',
           element:<AdminRoute><UpdateAsset></UpdateAsset></AdminRoute>,
           loader: ({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
         },
         {
           path:'/req',
-          element:<ReqAsset></ReqAsset>
+          element:<Private><ReqAsset></ReqAsset></Private>
         },
         {
           path: '/myrequest',
           element:<Private><MyRequest></MyRequest></Private>
+        },
+        {
+          path:'/myteam',
+          element: <Private><MyTeam></MyTeam></Private>
         }
 
       ]

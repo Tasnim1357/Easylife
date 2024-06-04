@@ -35,67 +35,7 @@ const AddEmployee = () => {
       });
       
 
-    //   const handleAdd = async(emp) => {
-    //     if (memberCount < 2 || memberCount == 2) {
-
-    //         const employee={
-    //             name:emp.name,
-    //             email:emp.email,
-    //             dob: emp.dob,
-    //             image:emp.image,
-    //             membertype:'employee',
-    //             adminEmail:user?.email,
-    //             admin: user?.displayName,
-    //             company:companyName,
-    //             logo:img
-              
-    
-    //         }
-    //         const menuRes=await axiosSecure.post('/team',employee);
-    //         console.log(menuRes.data)
-    //         if(menuRes.data.insertedId){
-    //             // show success pop up
-   
-    //     Swal.fire({
-    //   position: "top-end",
-    //   icon: "success",
-    //   title: `${emp.name} is added to the Team`,
-    //   showConfirmButton: false,
-    //   timer: 1500
-    // });
-   
-    //         }
-
-    //         const response = await axiosSecure.patch(`/employee/${emp._id}`, {company:companyName,logo:img });
-    //       if (response.data.modifiedCount > 0) {
-    //         Swal.fire({
-    //           title: "Great!",
-    //           text: "You successfully added to the team!",
-    //           icon: "success"
-    //         });
-    //           refetch()
-                
-                
-           
-    //       }
-    //       setmemberCount((prevCount) => prevCount + 1);
-
-    //       console.log(`Added ${emp.name}. New member count: ${memberCount}`);
-    //     } else {
-    //      toast.warn('You have reached the limit');
-    //      navigate('/payment')
-
-    //     }
-    //   };
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -135,7 +75,15 @@ const AddEmployee = () => {
                 });
                 refetch();
             }
-
+            const response1 = await axiosSecure.patch(`/hr/${user?.email}`, { memberCount3: 1 });
+            if (response1.data.modifiedCount > 0) {
+              Swal.fire({
+                  title: "Great!",
+                  text: "You successfully added to the team!",
+                  icon: "success"
+              });
+              refetch();
+          }
             setmemberCount((prevCount) => prevCount + 1);
         } else {
             toast.warn('You have reached the limit');
@@ -198,6 +146,8 @@ const AddEmployee = () => {
 </div>
 
             </div>
+
+            
         </div>
     );
 };

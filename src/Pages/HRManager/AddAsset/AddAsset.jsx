@@ -74,11 +74,11 @@ const AddAsset = () => {
                     </label>
                  
                     </div>
-                    <div>
+                    <div >
                    
-                   <label className='font-lato text-lg dark:text-white'> Product Status<br />
+                   <label className='font-lato text-lg dark:text-white w-full'> Product Status<br />
                        {/* <input type="text" placeholder='Subcategory_Name' required name='subcategory_Name' className='p-2 mt-2 dark:text-black w-full border-b-black border-b-2 outline-none' /> */}
-                       <select name="status" className='dark:text-black w-full p-2 mt-2' id="cars">
+                       <select name="package1" className='dark:text-black w-full  p-2 mt-2' id="cars">
    <option value="available">Available</option>
    <option value="out-of-stock">Out-of-stock</option>
   
