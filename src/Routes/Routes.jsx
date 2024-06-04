@@ -17,6 +17,8 @@ import AllRequest from "../Pages/HRManager/AllRequest/AllRequest";
 import AddEmployee from "../Pages/HRManager/AddEmployee/AddEmployee";
 import MyEmployee from "../Pages/HRManager/Myemployee/MyEmployee";
 import MyTeam from "../Pages/Employee/MyTeam/MyTeam";
+import EmpProfile from "../Pages/Employee/EmployeeProfile/EmpProfile";
+import HRProfile from "../Pages/HRManager/HRProfile/HRProfile";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +71,10 @@ const router = createBrowserRouter([
           loader: ({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
         },
         {
+          path:'/hrprofile',
+          element:<AdminRoute><HRProfile></HRProfile></AdminRoute>
+        },
+        {
           path:'/req',
           element:<Private><ReqAsset></ReqAsset></Private>
         },
@@ -79,6 +85,10 @@ const router = createBrowserRouter([
         {
           path:'/myteam',
           element: <Private><MyTeam></MyTeam></Private>
+        },
+        {
+          path:'/empprofile',
+          element:<Private><EmpProfile></EmpProfile></Private>
         }
 
       ]

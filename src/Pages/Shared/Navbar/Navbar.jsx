@@ -4,6 +4,7 @@ import logo from '../../../../public/download.svg'
 import useRole from '../../../Hooks/useRole';
 import { AuthContext } from '../../Provider/AuthProvider';
 import usePackage from '../../../Hooks/usePackage';
+import useEmployee from '../../../Hooks/useEmployee';
 // import { AuthContext } from '../../Provider/AuthProvider';
 // import { ThemeContext } from '../../Root/Root';
 // import { MdOutlineWbSunny } from "react-icons/md";
@@ -13,12 +14,13 @@ import usePackage from '../../../Hooks/usePackage';
 const Navbar = () => {
   const {user,logOut}=useContext(AuthContext)
   const [, img] = usePackage();
+  const [img1]=useEmployee()
   
  
 //   const{handleTheme,theme}=useContext(ThemeContext)
 
 const [role]=useRole()
-// console.log(role)
+console.log(img1)
 //   const handleThemeToggle = () => {
 //     handleTheme(theme === 'dark' ? 'light' : 'dark');
 //   };
@@ -33,6 +35,12 @@ const [role]=useRole()
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/req'>Request for an Asset  </Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/myteam'>My Team</Link></li>
 
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white'><Link to='/empprofile'>Profile</Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white bg-yellow-800 rounded-lg'><Link>{user?.displayName}</Link></li>
+
+
+
+
     </>
     const Navlinks3=<>
       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/'>Home</Link></li>
@@ -42,7 +50,8 @@ const [role]=useRole()
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/myemp'>My Employee List</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>Custom Request List</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/addemp'> Add an Employee</Link></li>
-       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>Profile</Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/hrprofile'>Profile</Link></li>
+       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white bg-yellow-800 rounded-lg'><Link>{user?.displayName}</Link></li>
 
     </>
 
@@ -55,6 +64,17 @@ const renderNavLinks = (role) => {
       return Navlinks1;
   }
 };
+const renderImages = (role,img1) => {
+  if (img1) {
+      return <img src={img1} className='w-20 h-20'></img>;
+  } else if (role === 'HR') {
+      return <img src={img} className='w-20 h-20'></img>;
+  } else {
+      return <img src={logo} alt="" />;
+  }
+};
+
+
 
 
 
@@ -75,7 +95,7 @@ const renderNavLinks = (role) => {
             </div>
             <ul tabIndex={0} className="menu menu-sm bg-[#2A2A2A] dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52">
            
-        {Navlinks1}
+    {renderNavLinks(role)}
         {/* <li>
          
         <label className="cursor-pointer grid place-items-center w-12">
@@ -89,7 +109,7 @@ const renderNavLinks = (role) => {
         <li className='mb-5'>
         {
             user && <div className="tooltip p-0 ml-2" data-tip={user.displayName}>
-             <img src={user.photoURL} alt="" className='w-[60px] h-[60px] rounded-full border-2 p-1  border-yellow-600'/>
+             <img src={user.photoURL} alt="" className='w-[60px] h-[60px] rounded-full border-2 p-1 bg-white border-yellow-600'/>
           </div>
             
           }
@@ -109,12 +129,18 @@ const renderNavLinks = (role) => {
          
             </ul>
           </div>
-          {
+          {/* {
             role==='HR'? <img src={img} className='w-20 h-20'></img>:<img src={logo} alt="" />
           }
+          {
+            ( img1)?<img src={img1}></img>:<img src={logo} alt="" />
+          } */}
+         {
+          renderImages(role,img1)
+         }
          
         </div>
-        <div className="navbar-center hidden lg:flex w-[64%]">
+        <div className="navbar-center hidden lg:flex w-[68%]">
           <ul className="menu menu-horizontal px-1 dark:text-white">
           {/* {
             role==='employee'? Navlinks2: Navlinks1
@@ -131,13 +157,13 @@ const renderNavLinks = (role) => {
         </div>
         <div className="navbar-end hidden lg:flex space-x-4">
         {
-              user && <div className="dropdown dropdown-hover mr-4  dark:text-white">
+              user && <div className=" mr-4 dropdown dropdown-hover dark:text-white">
             <img src={user.photoURL} alt="" className='w-[60px] bg-white h-[60px] rounded-full border-2 p-1 border-yellow-600'/>
-              <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 dark:bg-black shadow bg-base-100 rounded-box w-52">
+              {/* <ul tabIndex={0} className="dropdown-content z-[10] menu p-2 dark:bg-black shadow bg-base-100 rounded-box w-52">
                 <li><a>{user.displayName}</a></li>
                
               
-              </ul>
+              </ul> */}
             </div>
               
             }

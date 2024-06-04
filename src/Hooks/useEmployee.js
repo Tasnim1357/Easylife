@@ -2,35 +2,31 @@ import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { AuthContext } from '../Pages/Provider/AuthProvider'
-const usePackage = () => {
+const useEmployee = () => {
  const {user,loading}=useContext(AuthContext)
  
 
   const { data, isLoading,refetch } = useQuery({
-    queryKey: ['pack','img', user?.email],
+    queryKey: ['img1','companyName', user?.email],
     enabled: !loading && !!user?.email,
-
     queryFn: async () => {
-        const response = await axios.get(`http://localhost:5000/hr/${user?.email}`)
+        const response = await axios.get(`http://localhost:5000/employee/${user?.email}`)
         // Return both package1 and companyLogo
-        return { package1: response.data.package1, companyLogo: response.data.companyLogo,company:response.data.company }
+        return { companyLogo: response.data.logo,company:response.data.company }
     },
   })
 
-  const pack = data?.package1 || ''
-    const img = data?.companyLogo || ''
+    const img1 = data?.companyLogo || ''
     const companyName = data?.company || ''
 
  
-    return [pack, img,companyName, isLoading, refetch]
+    return [ img1,companyName, isLoading, refetch]
   //   Fetch user info using logged in user email
 
 //   return [pack,img, isLoading,refetch]
 }
 
-export default usePackage
-
-
+export default useEmployee
 
 
 
