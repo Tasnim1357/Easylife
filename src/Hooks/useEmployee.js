@@ -10,7 +10,7 @@ const useEmployee = () => {
     queryKey: ['img1','companyName', user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-        const response = await axios.get(`http://localhost:5000/employee/${user?.email}`)
+        const response = await axios.get(`https://assignment12-server-gamma-six.vercel.app/employee/${user?.email}`)
         // Return both package1 and companyLogo
         return { companyLogo: response.data.logo,company:response.data.company }
     },

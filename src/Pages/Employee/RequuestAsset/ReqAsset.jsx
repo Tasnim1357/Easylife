@@ -53,7 +53,7 @@ const ReqAsset = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/assetsCount?search=${searchTerm}&type=${filterType}`)
+        fetch(`https://assignment12-server-gamma-six.vercel.app/assetsCount?search=${searchTerm}&type=${filterType}`)
             .then(res => res.json())
             .then(data => setCount(data.count));
     }, [searchTerm,filterType]);

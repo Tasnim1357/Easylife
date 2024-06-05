@@ -11,7 +11,7 @@ const usePackage = () => {
     enabled: !loading && !!user?.email,
 
     queryFn: async () => {
-        const response = await axios.get(`http://localhost:5000/hr/${user?.email}`)
+        const response = await axios.get(`https://assignment12-server-gamma-six.vercel.app/hr/${user?.email}`)
         // Return both package1 and companyLogo
         return { package1: response.data.package1, companyLogo: response.data.companyLogo,company:response.data.company }
     },

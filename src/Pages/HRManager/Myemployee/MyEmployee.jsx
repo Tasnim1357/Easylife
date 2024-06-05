@@ -77,7 +77,7 @@ const MyEmployee = () => {
       }
 
       useEffect(() => {
-        fetch(`http://localhost:5000/teamCount`)
+        fetch(`https://assignment12-server-gamma-six.vercel.app/teamCount`)
             .then(res => res.json())
             .then(data => setCount(data.count));
     }, []);
@@ -135,9 +135,7 @@ const MyEmployee = () => {
     
     
   </table>
-  <div>
-    <button className='btn btn-ghost btn-md bg-orange-500 text-white'>Add selected members To the Team</button>
-  </div>
+  
 </div>
 
 

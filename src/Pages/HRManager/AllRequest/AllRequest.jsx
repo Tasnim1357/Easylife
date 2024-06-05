@@ -35,7 +35,7 @@ const AllRequest = () => {
 
 
       useEffect(() => {
-        fetch(`http://localhost:5000/requestsCount?search=${searchName}&email=${searchEmail}`)
+        fetch(`https://assignment12-server-gamma-six.vercel.app/requestsCount?search=${searchName}&email=${searchEmail}`)
             .then(res => res.json())
             .then(data => setCount(data.count));
     }, []);

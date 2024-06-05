@@ -56,7 +56,7 @@ const AuthProvider = ({children}) => {
             setUser(currentUser)
             if(currentUser){
                 const userInfo={ email: currentUser.email}
-                axios.post('http://localhost:5000/jwt',userInfo)
+                axios.post('https://assignment12-server-gamma-six.vercel.app/jwt',userInfo)
                 .then(res=>{
                     if(res.data.token){
                         localStorage.setItem('access-token',res.data.token);

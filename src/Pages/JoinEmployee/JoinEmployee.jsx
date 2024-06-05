@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, Navigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
@@ -17,137 +17,241 @@ const {createUser,profile,setLoading,goolgeLogin}=useContext(AuthContext)
 const [showPassword,setShowPassword]=useState(false)
     const { register, handleSubmit, formState: { errors },reset} = useForm();
     const location=useLocation()
+    const navigate = useNavigate();
+ 
   
 
-    const onSubmit = async (data) => {
+    // const onSubmit = async (data) => {
      
 
         // save user to database
 
-        const saveUser=async data=>{
+    //     const saveUser=async data=>{
 
-            const currentUser={
-                email: data.Email,
-                role: 'employee'
+    //         const currentUser={
+    //             email: data.Email,
+    //             role: 'employee'
 
-            }
-            const {data1}=axios.put('http://localhost:5000/user',currentUser)
-            return data1
-        }
+    //         }
+    //         const {data1}=axios.put('https://assignment12-server-gamma-six.vercel.app/user',currentUser)
+    //         return data1
+    //     }
         
-        try {
+    //     try {
          
-            const { name, image, Email, password,dob } = data;
+    //         const { name, image, Email, password,dob } = data;
 
-            saveUser(data)
+    //         saveUser(data)
 
-            console.log(data)
+    //         console.log(data)
           
-            const imageFile={image:data.image[0]}
-            // image upload to imgbb and get an url
-            const res= await axios.post(image_hosting_api,imageFile,{
-                headers:{
-                    'content-type': 'multipart/form-data'
-                }
-            });
-            if(res.data.success){
-                const employee={
-                    name:name,
-                    email:Email,
-                    dob: dob,
-                    image:res.data.data.display_url,
+    //         const imageFile={image:data.image[0]}
+    //         // image upload to imgbb and get an url
+    //         const res= await axios.post(image_hosting_api,imageFile,{
+    //             headers:{
+    //                 'content-type': 'multipart/form-data'
+    //             }
+    //         });
+    //         if(res.data.success){
+    //             const employee={
+    //                 name:name,
+    //                 email:Email,
+    //                 dob: dob,
+    //                 image:res.data.data.display_url,
                   
         
-                }
+    //             }
              
-                await createUser(Email, password);
+    //             await createUser(Email, password);
            
-            await profile(name,res.data.data.display_url);
-            toast.success("User created successfully");
+    //         await profile(name,res.data.data.display_url);
+    //         toast.success("User created successfully");
+    //         Navigate(location?.state? location.state:'/')
            
-                const menuRes=await axios.put('http://localhost:5000/employee',employee);
-                console.log(menuRes.data)
-                if(menuRes.data.modifiedCount){
-                    // show success pop up
-        setLoading(false)
-           reset()
-            Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${data.name} is added to the employee`,
-          showConfirmButton: false,
-          timer: 1500
-        });
-                }
-            }
-            console.log('with image url',res.data)
-            
+    //             const menuRes=await axios.put('https://assignment12-server-gamma-six.vercel.app/employee',employee);
+    //             console.log(menuRes.data)
+    //             if(menuRes.data.modifiedCount){
+    //                 // show success pop up
+    //     setLoading(false)
+    //        reset()
+    //         Swal.fire({
+    //       position: "top-end",
+    //       icon: "success",
+    //       title: `${data.name} is added to the employee`,
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     });
+    
+    //             }
+    //         }
+    //         console.log('with image url',res.data)
+           
 
            
-        }
+    //     }
     
 
           
-        catch (error) {
-            console.error(error);
-            toast.error(error.message);
-        }
-    };
+    //     catch (error) {
+    //         console.error(error);
+    //         toast.error(error.message);
+    //     }
+    // };
 
 
 
-    const socialLogin= (social)=>{
+    // const socialLogin= (social)=>{
         
-        social()
-        .then(async(result)=>{
+    //     social()
+    //     .then(async(result)=>{
 
-            console.log(result.user)
-            // save user to database
+    //         console.log(result.user)
+    //         // save user to database
 
-        const saveUser=async data=>{
+    //     const saveUser=async data=>{
 
-            const currentUser={
-                email: data.email,
-                role: 'employee'
+    //         const currentUser={
+    //             email: data.email,
+    //             role: 'employee'
 
-            }
-            const {data1}=axios.put('http://localhost:5000/user',currentUser)
-            return data1
-        }
-        saveUser(result.user)
+    //         }
+    //         const {data1}=axios.put('https://assignment12-server-gamma-six.vercel.app/user',currentUser)
+    //         return data1
+    //     }
+    //     saveUser(result.user)
             
-            toast.success("User Logged in Successfully")
-            const employee={
-                name:result.user.displayName,
-                email:result.user.email,
-                dob: null,
-                image:result.user.photoURL,
+    //         toast.success("User Logged in Successfully")
+    //         const employee={
+    //             name:result.user.displayName,
+    //             email:result.user.email,
+    //             dob: null,
+    //             image:result.user.photoURL,
               
     
-            }
-            const menuRes=await axios.put('http://localhost:5000/employee',employee);
-                console.log(menuRes.data)
-                if(menuRes.data.modifiedCount){
-                    // show success pop up
-        setLoading(false)
-           reset()
-            Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: `${result.user.displayName} is added to the employee`,
-          showConfirmButton: false,
-          timer: 1500
-        });
-        Navigate(location?.state? location.state:'/')
-                }
+    //         }
+    //         const menuRes=await axios.put('https://assignment12-server-gamma-six.vercel.app/employee',employee);
+    //             console.log(menuRes.data)
+    //             if(menuRes.data.modifiedCount){
+    //                 // show success pop up
+    //     setLoading(false)
+    //        reset()
+    //         Swal.fire({
+    //       position: "top-end",
+    //       icon: "success",
+    //       title: `${result.user.displayName} is added to the employee`,
+    //       showConfirmButton: false,
+    //       timer: 1500
+    //     });
+    //     Navigate(location?.state? location.state:'/')
+    //             }
          
             
-        })
-        .catch(error=>{
-            console.log(error)
-            toast.warn(error.message +'Give valid email and password')
-        })
-      }
+    //     })
+    //     .catch(error=>{
+    //         console.log(error)
+    //         toast.warn(error.message +'Give valid email and password')
+    //     })
+    //   }
+
+
+
+
+
+    const onSubmit = async (data) => {
+        try {
+          const { name, image, Email, password, dob } = data;
+    
+          // Image upload to imgbb and get URL
+          const imageFile = new FormData();
+          imageFile.append('image', image[0]);
+          const res = await axios.post(image_hosting_api, imageFile);
+          
+          if (res.data.success) {
+            const imageUrl = res.data.data.display_url;
+    
+            // Create user
+            await createUser(Email, password);
+            await profile(name, imageUrl);
+    
+            // Save user to database
+            const currentUser = { email: Email, role: 'employee' };
+            await axios.put('https://assignment12-server-gamma-six.vercel.app/user', currentUser);
+    
+            const employee = { name, email: Email, dob, image: imageUrl };
+            await axios.put('https://assignment12-server-gamma-six.vercel.app/employee', employee);
+    
+            toast.success("User created successfully");
+    
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${name} is added as an employee`,
+              showConfirmButton: false,
+              timer: 1500
+            });
+    
+            setLoading(false);
+            reset();
+            navigate(location?.state?.from || '/');
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error(error.message);
+        }
+      };
+    
+      const socialLogin = (social) => {
+        social()
+          .then(async (result) => {
+            const { user } = result;
+            const currentUser = { email: user.email, role: 'employee' };
+            await axios.put('https://assignment12-server-gamma-six.vercel.app/user', currentUser);
+    
+            const employee = {
+              name: user.displayName,
+              email: user.email,
+              dob: null,
+              image: user.photoURL,
+            };
+            await axios.put('https://assignment12-server-gamma-six.vercel.app/employee', employee);
+    
+            toast.success("User logged in successfully");
+    
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: `${user.displayName} is added as an employee`,
+              showConfirmButton: false,
+              timer: 1500
+            });
+    
+            setLoading(false);
+            reset();
+            navigate(location?.state?.from || '/');
+          })
+          .catch(error => {
+            console.error(error);
+            toast.warn(`${error.message}. Give valid email and password`);
+          });
+      };
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
     <div >

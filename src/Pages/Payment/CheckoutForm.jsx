@@ -24,7 +24,7 @@ const CheckoutForm = () => {
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
         if (totalPrice > 0) {
-            axios.post("http://localhost:5000/create-payment-intent", { price: totalPrice })
+            axios.post("https://assignment12-server-gamma-six.vercel.app/create-payment-intent", { price: totalPrice })
                 .then((res) => {
                     console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret);
@@ -103,7 +103,7 @@ const CheckoutForm = () => {
         };
 
         try {
-            const res = await axios.post('http://localhost:5000/payments', payment);
+            const res = await axios.post('https://assignment12-server-gamma-six.vercel.app/payments', payment);
             console.log('payment saved', res.data);
             if (res.data.insertedId) {
                 Swal.fire({
@@ -153,7 +153,7 @@ const CheckoutForm = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2 className='text-2xl font-semibold text-center mb-3'>You have to pay:${totalPrice}</h2>
+            <h2 className='text-2xl font-semibold text-center mb-3'>Complete Your Payment here</h2>
         <CardElement
    options={{
      style: {

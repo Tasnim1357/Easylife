@@ -14,39 +14,46 @@ const MyTeam = () => {
     const numberOfPage = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPage).keys()];
     
-    const { data: hr = [],refetch } = useQuery({
-        queryKey: ['HR', user?.email ,current, itemsPerPage],
-        enabled: !loading && !!user?.email,
-        queryFn: async () => {
-          const { data } = await axiosSecure.get(`/myteam/${user?.email}`, {
-           
-          });
+
+
+    const { data: hr = [], isLoading: isHrLoading } = useQuery({
+      queryKey: ['HR', user?.email],
+      enabled: !loading && !!user?.email,
+      queryFn: async () => {
+          const { data } = await axiosSecure.get(`/myteam/${user?.email}`);
           return data;
-        },
-      });
+      },
+  });
 
-
-      const { data: team2 = []} = useQuery({
-        queryKey: ['team2', user?.email ,current, itemsPerPage],
-        enabled: !loading && !!user?.email,
-        queryFn: async () => {
+  const { data: team2 = [], isLoading: isTeam2Loading, refetch: refetchTeam2 } = useQuery({
+      queryKey: ['team2', user?.email, current, itemsPerPage],
+      enabled: !isHrLoading && !!user?.email && !!hr.adminEmail,
+      queryFn: async () => {
           const { data } = await axiosSecure.get(`/myteam2/${hr.adminEmail}`, {
-            params: {
-              
-               page: current,
-               size: itemsPerPage,
-            },
+              params: {
+                  page: current,
+                  size: itemsPerPage,
+              },
           });
           return data;
-        },
-      });
+      },
+  });
 
 
       useEffect(() => {
-        fetch(`http://localhost:5000/teamCount`)
+        fetch(`https://assignment12-server-gamma-six.vercel.app/teamCount`)
             .then(res => res.json())
             .then(data => setCount(data.count));
     }, []);
+
+
+    useEffect(() => {
+      if (hr.adminEmail) {
+          refetchTeam2();
+      }
+  }, [hr.adminEmail, current, itemsPerPage, refetchTeam2]);
+
+  
 
     const handlePrev = () => {
         if (current > 0) {

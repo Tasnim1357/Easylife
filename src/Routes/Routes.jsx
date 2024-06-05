@@ -68,7 +68,7 @@ const router = createBrowserRouter([
         {
           path:'/update/:id',
           element:<AdminRoute><UpdateAsset></UpdateAsset></AdminRoute>,
-          loader: ({params})=> fetch(`http://localhost:5000/assets/${params.id}`)
+          loader: ({params})=> fetch(`https://assignment12-server-gamma-six.vercel.app/assets/${params.id}`)
         },
         {
           path:'/hrprofile',

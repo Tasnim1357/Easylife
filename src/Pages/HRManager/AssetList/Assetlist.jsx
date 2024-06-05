@@ -38,7 +38,7 @@ const Assetlist = () => {
 
 
 useEffect(() => {
-  fetch('http://localhost:5000/productsCount/')
+  fetch('https://assignment12-server-gamma-six.vercel.app/productsCount/')
       .then(res => res.json())
       .then(data => setCount(data.count));
 }, []);

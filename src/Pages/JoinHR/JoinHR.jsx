@@ -34,18 +34,7 @@ const [showPassword,setShowPassword]=useState(false)
     const onSubmit = async (data) => {
      
 
-        // save user to database
-
-        // const saveUser=async data=>{
-
-        //     const currentUser={
-        //         email: data.Email,
-        //         role: 'HR'
-
-        //     }
-        //     const {data1}=axios.put('http://localhost:5000/user',currentUser)
-        //     return data1
-        // }
+        
         
 
         const saveUser = async (data) => {
@@ -53,58 +42,14 @@ const [showPassword,setShowPassword]=useState(false)
                 email: data.Email,
                 role: 'HR',
             };
-            const { data: data1 } = await axios.put('http://localhost:5000/user', currentUser);
+            const { data: data1 } = await axios.put('https://assignment12-server-gamma-six.vercel.app/user', currentUser);
             return data1;
         };
         try {
          
             const { name,company, image,image2,package1, Email, password,dob } = data;
 
-        //     saveUser(data)
-
-        //     console.log(data)
-          
-        //     const imageFile={image:data.image[0]}
-        //     // image upload to imgbb and get an url
-        //     const res= await axios.post(image_hosting_api,imageFile,{
-        //         headers:{
-        //             'content-type': 'multipart/form-data'
-        //         }
-        //     });
-        //     if(res.data.success){
-        //         const employee={
-        //             name:name,
-        //             email:Email,
-        //             dob: dob,
-        //             image:res.data.data.display_url,
-                  
-        
-        //         }
-             
-        //         await createUser(Email, password);
-           
-        //     await profile(name,res.data.data.display_url);
-        //     toast.success("User created successfully");
-           
-        //         const menuRes=await axios.put('http://localhost:5000/hr',employee);
-        //         console.log(menuRes.data)
-        //         if(menuRes.data.modifiedCount){
-        //             // show success pop up
-        // setLoading(false)
-        //    reset()
-        //     Swal.fire({
-        //   position: "top-end",
-        //   icon: "success",
-        //   title: `${data.name} is added to the employee`,
-        //   showConfirmButton: false,
-        //   timer: 1500
-        // });
-        //         }
-        //     }
-        //     console.log('with image url',res.data)
-
-
-
+      
 
 
 
@@ -133,7 +78,7 @@ const [showPassword,setShowPassword]=useState(false)
             toast.success("User created successfully");
             
 
-            const menuRes = await axios.put('http://localhost:5000/hr', hr);
+            const menuRes = await axios.put('https://assignment12-server-gamma-six.vercel.app/hr', hr);
             console.log(menuRes.data);
             navigate('/payment')
             if (menuRes.data.modifiedCount) {
