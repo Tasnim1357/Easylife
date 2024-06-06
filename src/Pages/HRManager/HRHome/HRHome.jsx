@@ -5,6 +5,7 @@ import Limited from './Limited/Limited';
 import PieChart from '../PieChart/PieChart';
 import Pie1 from './Pie1/Pie1';
 import EmpSection from './Employeecard/EmpSection';
+import AssetCollection from './AssetCollection/AssetCollection';
 
 const HRHome = () => {
     return (
@@ -14,6 +15,7 @@ const HRHome = () => {
             <Limited></Limited>
            <Pie1></Pie1>
            <EmpSection></EmpSection>
+           <AssetCollection></AssetCollection>
         </div>
     );
 };

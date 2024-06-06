@@ -23,7 +23,7 @@ const {user,loading}=useContext(AuthContext)
     });
     const emp = employee.slice(0, 3);
     return (
-        <div>
+        <div className='mt-24'>
             <h1 className='sm:text-5xl text-2xl font-bold  my-5 border-b-yellow-500 pb-6 border-b-4 sm:w-1/2 w-3/4'>Employees </h1>
             <p className='sm:text-4xl text-2xl font-semibold text-center'>Meet Employees</p>
             <div className='mt-10 grid grid-cols-1 md:grid-cols-3 gap-6'>
