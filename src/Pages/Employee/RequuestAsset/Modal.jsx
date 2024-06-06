@@ -32,6 +32,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
         userEmail: user?.email,
         requestDate: new Date(),
         name:item.name,
+        quantity:item.quantity,
         type: item.type,
         status1:'pending',
         approvalDate:null
