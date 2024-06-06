@@ -3,7 +3,7 @@ import React from 'react';
 const HRCard = ({request}) => {
     const {name, quantity, status1,note, type}=request;
     return (
-        <div className="card  bg-[#fcedcf] border-2 border-[#5ec045] shadow-xl duration-500 cursor-pointer hover:scale-105">
+        <div className="card  bg-[#fcedcf]  shadow-xl duration-500 cursor-pointer hover:scale-105">
         <div className="card-body ">
          <div>
          <h2 className=" text-center text-2xl font-semibold text-[#367327]">{name}</h2>

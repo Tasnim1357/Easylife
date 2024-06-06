@@ -48,7 +48,6 @@ const [role]=useRole()
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/addasset'>Add an Asset</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/allreq'>All Requests</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/myemp'>My Employee List</Link></li>
-       <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/arts'>Custom Request List</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/addemp'> Add an Employee</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-base dark:text-white'><Link to='/hrprofile'>Profile</Link></li>
        <li className=' text-white  duration-500 hover:text-[#ECA300] font-medium text-lg dark:text-white bg-yellow-800 rounded-lg'><Link>{user?.displayName}</Link></li>

@@ -19,7 +19,7 @@ const Pending = () => {
         },
       });
 
-      const pending = requests2.slice(0, 3);
+      const pending = requests2.slice(0, 4);
 
 
 
@@ -27,7 +27,7 @@ const Pending = () => {
         <div className='mt-24'>
 
             <h1 className='text-5xl font-bold  my-5 border-b-yellow-500 pb-6 border-b-4 w-1/2'>All Pending Requests</h1>
-            <div className='mt-10 grid grid-cols-1 md:grid-cols-3 gap-6'>
+            <div className='mt-10 grid grid-cols-1 md:grid-cols-4 gap-6'>
               {
                 pending.map(req=><HRCard key={req._id} request={req}></HRCard>)
               }

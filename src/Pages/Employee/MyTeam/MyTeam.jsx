@@ -80,8 +80,7 @@ const MyTeam = () => {
         </th>
         <th>Employee Image</th>
         <th>Employee Name</th>
-        <th>Member Type</th>
-       
+        
        
       </tr>
     </thead>
@@ -95,7 +94,7 @@ const MyTeam = () => {
                     </td>
                   <td><img src={employee.image} className='w-16 rounded-xl h-16' alt="" /></td>
                   <td>{employee.name}</td>
-                  <td>{employee.membertype==='employee'?<IoPeople className='text-4xl text-orange-600' /> : <RiAdminFill className='text-4xl  text-orange-600' />}</td>
+              
                   
                 </tr>
               ))}

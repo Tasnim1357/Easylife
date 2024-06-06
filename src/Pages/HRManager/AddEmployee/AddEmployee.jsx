@@ -134,7 +134,6 @@ const AddEmployee = () => {
           email: emp.email,
           dob: emp.dob,
           image: emp.image,
-          membertype: 'employee',
           adminEmail: user?.email,
           admin: user?.displayName,
           company: companyName,

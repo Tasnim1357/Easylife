@@ -3,6 +3,8 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 
+
+
 const PieChart = () => {
     const axiosSecure=useAxiosSecure()
     const {user,loading}=useContext(AuthContext)

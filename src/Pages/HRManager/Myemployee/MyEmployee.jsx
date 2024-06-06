@@ -107,7 +107,7 @@ const MyEmployee = () => {
         </th>
         <th>Employee Image</th>
         <th>Employee Name</th>
-        <th>Member Type</th>
+       
         <th>Action</th>
        
       </tr>
@@ -122,7 +122,7 @@ const MyEmployee = () => {
                     </td>
                   <td><img src={employee.image} className='w-16 rounded-xl h-16' alt="" /></td>
                   <td>{employee.name}</td>
-                  <td>{employee.membertype}</td>
+           
                   <td>
                     <Link to="#">
                       <button  className="btn btn-ghost btn-md bg-orange-500 text-white" onClick={()=>handleDel(employee)}  >Remove from the Team</button>
