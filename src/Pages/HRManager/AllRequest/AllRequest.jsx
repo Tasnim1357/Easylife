@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const AllRequest = () => {
     const {user,loading}=useContext(AuthContext)
@@ -114,7 +115,11 @@ const AllRequest = () => {
 
     
     return (
-        <div>
+        <div className='mt-24'>
+          
+          <Helmet>
+            <title>EasyLife | All Requests</title>
+          </Helmet>
             <h1 className='text-4xl font-bold text-center my-5'>All Requests are here</h1>
 
 

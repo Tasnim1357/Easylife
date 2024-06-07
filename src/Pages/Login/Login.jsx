@@ -6,7 +6,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-// import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../Provider/AuthProvider';
 const Login = () => {
   const {createLogin,goolgeLogin}=useContext(AuthContext)
@@ -47,9 +47,9 @@ const Login = () => {
    <div>
     
      <div className='flex justify-around md:flex-row flex-col gap-5'>
-         {/* <Helmet>
-            <title>ArtRoof | Login</title>
-          </Helmet> */}
+         <Helmet>
+            <title>EadyLife | Login</title>
+          </Helmet>
       
     <div className='md:w-1/2 w-full'>
     <img src="https://i.ibb.co/Kx0PfxQ/office-workers-cartoon-color-characters-vector-25602546.jpg" className='w-full h-full' alt="" />
@@ -89,7 +89,7 @@ const Login = () => {
       
 
       <input type="submit" value="Sign In"   className='btn w-full  sm:text-2xl text-balance font-lato  bg-[#ECA300] text-[#2D394B] duration-500 hover:text-white hover:bg-[#2D394B]'/>
-      <p className='dark:text-white'>Do not have an account?Please Sign up as an  <Link to='/joinemployee' className='btn-link text-lg font-sora font-bold'>Employee</Link></p>
+      <p className='dark:text-white'>Do not have an account?Please Sign up as an  <Link to='/joinemployee' className='btn-link text-lg font-sora font-bold'>Employee</Link> Or <Link to={'/joinhr'} className='btn-link text-lg font-sora font-bold'>HR Manager</Link></p>
     </form>
   
      </div>

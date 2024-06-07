@@ -5,6 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { AuthContext } from '../Provider/AuthProvider';
 import usePackage from '../../Hooks/usePackage';
+import { Helmet } from 'react-helmet-async';
 
 const stripePromise=loadStripe(import.meta.env.VITE_Payment_Gateway_PK)
 const Payment = () => {
@@ -31,6 +32,9 @@ const Payment = () => {
 
     return (
         <div className='mt-24'>
+           <Helmet>
+            <title>EasyLife | Package payment</title>
+          </Helmet>
             <h2 className='text-4xl font-bold text-center mb-10'>Please Pay First</h2>
             <div>
              

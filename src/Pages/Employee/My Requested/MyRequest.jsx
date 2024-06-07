@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import PDFFile from '../PDFFile';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import useEmployee from './../../../Hooks/useEmployee';
+import { Helmet } from 'react-helmet-async';
 
 
 const MyRequest = () => {
@@ -134,7 +135,10 @@ const MyRequest = () => {
   
 
     return (
-        <div>
+        <div className='mt-24'>
+           <Helmet>
+            <title>EasyLife | Requested Assets</title>
+          </Helmet>
             <h2 className='text-4xl font-bold text-center my-10'>My Requested Assets</h2>
 
             

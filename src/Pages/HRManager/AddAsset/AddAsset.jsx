@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { Helmet } from 'react-helmet-async';
 
 const AddAsset = () => {
     const {user}=useContext(AuthContext)
@@ -38,6 +39,9 @@ const AddAsset = () => {
     }
     return (
         <div className='mt-24'>
+               <Helmet>
+            <title>EasyLife | Add Asset</title>
+          </Helmet>
             <h2 className='text-4xl font-bold text-center my-5'>Add an Asset</h2>
             <div>
                 <form className='border-2  w-full mx-auto p-7  rounded-2xl space-y-4 ' onSubmit={handleAdd}>

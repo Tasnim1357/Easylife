@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../Provider/AuthProvider';
 import axios from 'axios';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateAsset = () => {
     const asset=useLoaderData()
@@ -35,6 +36,9 @@ const UpdateAsset = () => {
     }
     return (
         <div className='mt-24'>
+               <Helmet>
+            <title>EasyLife | Update Assets</title>
+          </Helmet>
         <h2 className='text-4xl font-bold text-center my-5'>Update the Asset</h2>
         <div>
             <form className='border-2  w-full mx-auto p-7  rounded-2xl space-y-4 ' onSubmit={handleUpdate}>

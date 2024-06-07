@@ -5,6 +5,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
+import { Helmet } from 'react-helmet-async';
 
 const ReqAsset = () => {
     const {user,loading}=useContext(AuthContext)
@@ -72,7 +73,10 @@ const ReqAsset = () => {
 
 
     return (
-        <div>
+        <div className='mt-24'>
+           <Helmet>
+            <title>EasyLife | Request For Assets</title>
+          </Helmet>
             <h1 className='text-4xl font-bold text-center my-10'>Request For an Asset</h1>
 
             <div className='space-y-8 my-20'>

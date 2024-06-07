@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const EmpProfile = () => {
     const navigate=useNavigate()
@@ -37,7 +38,10 @@ const EmpProfile = () => {
     console.log(errors);
  
     return (
-        <div>
+        <div className='mt-24'>
+             <Helmet>
+            <title>EasyLife | Employee Profile</title>
+          </Helmet>
 
 
 

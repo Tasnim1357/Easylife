@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import usePackage from '../../../Hooks/usePackage';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const AddEmployee = () => {
     const {user,loading}=useContext(AuthContext)
@@ -60,56 +61,6 @@ const AddEmployee = () => {
 
 
 
-
-    // const handleAdd = async (emp) => {
-    //     if (memberCount < number) {
-    //         const employee = {
-    //             name: emp.name,
-    //             email: emp.email,
-    //             dob: emp.dob,
-    //             image: emp.image,
-    //             membertype: 'employee',
-    //             adminEmail: user?.email,
-    //             admin: user?.displayName,
-    //             company: companyName,
-    //             logo: img
-    //         };
-
-    //         const menuRes = await axiosSecure.post('/team', employee);
-    //         if (menuRes.data.insertedId) {
-    //             Swal.fire({
-    //                 position: "top-end",
-    //                 icon: "success",
-    //                 title: `${emp.name} is added to the Team`,
-    //                 showConfirmButton: false,
-    //                 timer: 1500
-    //             });
-    //         }
-
-    //         const response = await axiosSecure.patch(`/employee/${emp._id}`, { company: companyName, logo: img });
-    //         if (response.data.modifiedCount > 0) {
-    //             Swal.fire({
-    //                 title: "Great!",
-    //                 text: "You successfully added to the team!",
-    //                 icon: "success"
-    //             });
-    //             refetch();
-    //         }
-    //         const response1 = await axiosSecure.patch(`/hr/${user?.email}`, { memberCount3: 1 });
-    //         if (response1.data.modifiedCount > 0) {
-    //           Swal.fire({
-    //               title: "Great!",
-    //               text: "You successfully added to the team!",
-    //               icon: "success"
-    //           });
-    //           refetch();
-    //       }
-    //         setmemberCount((prevCount) => prevCount + 1);
-    //     } else {
-    //         toast.warn('You have reached the limit');
-    //         navigate('/payment');
-    //     }
-    // };
 
 
 
@@ -207,6 +158,9 @@ const AddEmployee = () => {
      
     return (
         <div className='mt-24'>
+             <Helmet>
+            <title>EasyLife | Add Employee</title>
+          </Helmet>
             <h1 className='text-4xl font-bold text-center my-5'>Add Your Employee</h1>
 
 

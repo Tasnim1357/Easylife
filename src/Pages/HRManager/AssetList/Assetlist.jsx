@@ -7,6 +7,7 @@ import { FaEdit } from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import useAxiosSecure from './../../../Hooks/useAxiosSecure';
+import { Helmet } from 'react-helmet-async';
 
 
 const Assetlist = () => {
@@ -127,7 +128,10 @@ useEffect(() => {
 
 
     return (
-        <div>
+        <div className='mt-24'>
+             <Helmet>
+            <title>EasyLife | Assetlist</title>
+          </Helmet>
             <h1 className='text-4xl font-bold text-center my-10'>All the Asset list</h1>
             <div className='space-y-8'>
 

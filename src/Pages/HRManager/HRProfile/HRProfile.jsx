@@ -4,6 +4,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { useForm } from 'react-hook-form';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet-async';
 
 const HRProfile = () => {
     const navigate=useNavigate()
@@ -34,7 +35,10 @@ const HRProfile = () => {
     }
     console.log(errors);
     return (
-        <div>
+        <div className='mt-24'>
+               <Helmet>
+            <title>EasyLife | Profile Update</title>
+          </Helmet>
             
             <div className='flex justify-center items-center mt-16'>
        <form onSubmit={handleSubmit(onSubmit)} className=' w-full md:w-1/2 border-2 md:p-8 p-2 space-y-3 grid grid-cols-1 rounded-2xl'>

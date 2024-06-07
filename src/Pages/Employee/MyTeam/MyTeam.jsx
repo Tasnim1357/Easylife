@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { RiAdminFill } from "react-icons/ri";
 import { IoPeople } from "react-icons/io5";
 import { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const MyTeam = () => {
     const {user,loading}=useContext(AuthContext)
@@ -68,6 +69,9 @@ const MyTeam = () => {
     };
     return (
         <div className='mt-24'>
+             <Helmet>
+            <title>EasyLife | My Team</title>
+          </Helmet>
             <h1 className='text-4xl font-bold text-center my-5'>My Team</h1>
 
             <div className="overflow-x-auto">

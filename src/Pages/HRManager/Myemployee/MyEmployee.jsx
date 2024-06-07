@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyEmployee = () => {
     const {user,loading}=useContext(AuthContext)
@@ -96,6 +97,9 @@ const MyEmployee = () => {
 
     return (
         <div className='mt-24'>
+             <Helmet>
+            <title>EasyLife | My Employees</title>
+          </Helmet>
             <h1 className='text-4xl font-bold text-center my-5'>My Employee List</h1>
             <div className="overflow-x-auto">
   <table className="table w-full">

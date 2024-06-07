@@ -6,7 +6,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 const image_hosting_key= import.meta.env.VITE_IMAGE_HOSTING_KEY
 const image_hosting_api= `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
-// import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 
 import axios from 'axios';
 import Swal from 'sweetalert2';
@@ -108,9 +108,9 @@ const [showPassword,setShowPassword]=useState(false)
 
     return (
     <div >
-         {/* <Helmet>
-            <title>ArtRoof | Register</title>
-          </Helmet> */}
+         <Helmet>
+            <title>EasyLife | Join as HR Manager</title>
+          </Helmet>
      
       <div className='flex justify-around md:flex-row flex-col gap-1 mt-16'>
       <div className='md:w-1/2 w-full'>
