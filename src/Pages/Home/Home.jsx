@@ -3,6 +3,7 @@ import CommonSection from '../CommonSection/CommonSection';
 import useRole from '../../Hooks/useRole';
 import HRHome from '../HRManager/HRHome/HRHome';
 import { Helmet } from 'react-helmet-async';
+import EmployeeHome from '../Employee/EmployeeHome/EmployeeHome';
 
 const Home = () => {
 
@@ -14,6 +15,7 @@ const Home = () => {
              <title>EasyLife | HR Manager Home</title>
            </Helmet>
           }
+        
           <Helmet>
             <title>EasyLife | Home</title>
           </Helmet>
@@ -22,6 +24,9 @@ const Home = () => {
             {
                 role==='HR' && <HRHome></HRHome>
             }
+              {
+            role=== 'employee' && <EmployeeHome></EmployeeHome>
+          }
           </div>
         </div>
     );
