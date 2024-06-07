@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+// import useEmployee from '../../Hooks/useEmployee';
 
 const styles = StyleSheet.create({
     body:{
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
     },
     page: {
       flexDirection: 'row',
-      backgroundColor: '#E4E4E4'
+      backgroundColor: '#FFFFFF'
     },
     section: {
       margin: 10,
@@ -25,8 +26,15 @@ const styles = StyleSheet.create({
             left:0,
             right:0,
             textAlign: 'center',
-            color: 'gray',
+            color: 'black',
 
+        },
+        image:
+        {
+          marginVertical:15,
+          marginHorizontal:100,
+          height:60,
+          width:60
         },
         // text: {
         //     position: 'relative',
@@ -45,19 +53,31 @@ const styles = StyleSheet.create({
           },
     
   });
-const PDFFile = () => {
+const PDFFile = ({company,img,date}) => {
+  
     return (
         <Document>
     <Page size="A4" style={styles.page}>
  <div className='flex flex-col'>
  <View className='absolute top-3 '>
-        <Text style={styles.header}>Company</Text>
+        <Text style={styles.header}>Page 1</Text>
       </View>
+      <Image style={styles.image} src={img}></Image>
       
-        <Text className='absolute top-1' >Hello</Text>
+        {/* <Text className='absolute top-1' ><img src={img1} alt="" /></Text> */}
   
       <View >
-        <Text >Hi.</Text>
+      
+        <Text>Comapny Name: {company}</Text>
+      </View>
+  
+      <View >
+      
+        <Text>Assets is a leading company specializing in comprehensive asset management solutions, empowering businesses to efficiently manage, track, and optimize their valuable resources for maximum productivity and growth.</Text>
+      </View>
+      <View style={styles.pageNumber}>
+      
+        <Text>Printing Date: {date}</Text>
       </View>
  </div>
    

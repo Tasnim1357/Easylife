@@ -6,7 +6,8 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 import PDFFile from '../PDFFile';
 import { PDFDownloadLink } from '@react-pdf/renderer';
-import axios from 'axios';
+import useEmployee from './../../../Hooks/useEmployee';
+
 
 const MyRequest = () => {
 
@@ -22,6 +23,10 @@ const MyRequest = () => {
     const numberOfPage = Math.ceil(count / itemsPerPage);
     const pages = [...Array(numberOfPage).keys()];
  
+
+    const [img1,companyName]=useEmployee()
+    const date1=new Date().toLocaleString('en-US')
+
 
     const { data: requests = [],refetch } = useQuery({
         queryKey: ['requests', user?.email, searchTerm, filterType, filterStatus, current, itemsPerPage],
@@ -228,7 +233,7 @@ const MyRequest = () => {
                     }
                     {
                         request.status1=== 'approved' &&  
-                            <PDFDownloadLink document={<PDFFile></PDFFile>} fileName='FORMe2300'>
+                            <PDFDownloadLink document={<PDFFile company={companyName} img={img1} date={date1}></PDFFile>}  fileName='FORM'>
                                 {({loading})=>loading ? 
                                 (<button>Loading document...</button>):
                                  (<button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2'>Print</button>)
