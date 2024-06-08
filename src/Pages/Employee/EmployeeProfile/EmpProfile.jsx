@@ -9,31 +9,49 @@ import { Helmet } from 'react-helmet-async';
 
 const EmpProfile = () => {
     const navigate=useNavigate()
-    const{user,profile,setLoading}=useContext(AuthContext)
+    // const{user,profile,setLoading}=useContext(AuthContext)
+    const { user, setUser, profile, setLoading } = useContext(AuthContext);
     const location=useLocation()
     const { register, handleSubmit, formState: { errors } } = useForm();
     const axiosSecure= useAxiosSecure()
     
-    const onSubmit = data => {
+    const onSubmit = async(data) => {
        
-        const {name,Photo}=data;
-       
-        profile(name,Photo)
-        .then(async()=>{
+
+    const { name, Photo } = data;
+
+    try {
+        await profile(name, Photo);
+
+        await axiosSecure.patch(`/employeename/${user?.email}`, { name: name });
+        await axiosSecure.patch(`/teamname/${user?.email}`, { name: name });
+        await axiosSecure.patch(`/reqname/${user?.email}`, { name: name });
+
+        setLoading(false);
+
+        // Update the user context with the new data
+        setUser({
+            ...user,
+            displayName: name,
+            photoURL: Photo
+        });
+
+        navigate(location?.state ? location.state : location);
+        toast.success('Your profile updated successfully');
+    } catch (error) {
+        console.error("Error updating profile:", error);
+        toast.error('There was an error updating your profile.');
+    }
 
 
-            const response = await axiosSecure.patch(`/employeename/${user?.email}`, { name: name});
-       
-            const response1 = await axiosSecure.patch(`/teamname/${user?.email}`, { name: name});
 
-        const response2 = await axiosSecure.patch(`/reqname/${user?.email}`, { name: name});
-       
-           
-            setLoading(false)
-            navigate(location?.state? location.state:location)
-            toast.success('Your profile updated successfully')
-        })
-       .catch()
+
+
+
+
+
+
+
     }
     console.log(errors);
  

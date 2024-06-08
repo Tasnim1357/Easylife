@@ -9,7 +9,7 @@ const MyPending = () => {
     const axiosSecure=useAxiosSecure()
     const {user,loading}=useContext(AuthContext)
   
-      const { data: requests3 = [],refetch } = useQuery({
+      const { data: requests3 = [],refetch,isLoading } = useQuery({
           queryKey: ['requests3', user?.email],
           enabled: !loading && !!user?.email,
           queryFn: async () => {
@@ -21,8 +21,7 @@ const MyPending = () => {
         });
   
 
-        console.log(requests3)
-    
+ 
   
 
 
@@ -30,11 +29,22 @@ const MyPending = () => {
         <div className='mt-24'>
              <h1 className='text-5xl font-bold  my-5 border-b-yellow-500 pb-6 border-b-4 w-1/2'>My Pending Requests</h1>
 
-             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+
+<div>
+
+
+  
+{
+                isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                :
+                <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                 {
                     requests3.map(req=><EmpCard1 key={req._id} request={req}></EmpCard1>)
                 }
              </div>
+              }
+</div>
+            
         </div>
     );
 };

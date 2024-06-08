@@ -37,7 +37,7 @@ const AuthProvider = ({children}) => {
     }
 
     const profile=(name,photo)=>{
-      setLoading(true)
+    //   setLoading(true)
        
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL:photo
@@ -76,7 +76,7 @@ const AuthProvider = ({children}) => {
     },[])
 
 
-    const authInfo={user,createUser,logOut,createLogin,loading,profile,goolgeLogin,githubLogin,setLoading}
+    const authInfo={user,setUser,createUser,logOut,createLogin,loading,profile,goolgeLogin,githubLogin,setLoading}
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

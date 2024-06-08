@@ -5,11 +5,16 @@ import HRHome from '../HRManager/HRHome/HRHome';
 import { Helmet } from 'react-helmet-async';
 import EmployeeHome from '../Employee/EmployeeHome/EmployeeHome';
 
+
 const Home = () => {
 
     const [role]=useRole()
+   
     return (
         <div>
+          <div>
+           
+          </div>
           {
              role==='HR' &&   <Helmet>
              <title>EasyLife | HR Manager Home</title>

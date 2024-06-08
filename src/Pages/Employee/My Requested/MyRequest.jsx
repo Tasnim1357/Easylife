@@ -29,7 +29,7 @@ const MyRequest = () => {
     const date1=new Date().toLocaleString('en-US')
 
 
-    const { data: requests = [],refetch } = useQuery({
+    const { data: requests = [],refetch, isLoading } = useQuery({
         queryKey: ['requests', user?.email, searchTerm, filterType, filterStatus, current, itemsPerPage],
         enabled: !loading && !!user?.email,
         queryFn: async () => {
@@ -200,71 +200,86 @@ const MyRequest = () => {
         </div>
       </div>
 
+
       <div>
-            <div className="overflow-x-auto">
-  <table className="table w-full">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-         #
-        </th>
-        <th>Asset Name</th>
-        <th>Asset Type</th>
-        <th> Request Date</th>
-        <th> Approval Date</th>
-        <th>Request status</th>
-        <th>Action</th>
+
+                {
+                   isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                   :
+                   <div>
+                   <div className="overflow-x-auto">
+         <table className="table w-full">
+           {/* head */}
+           <thead>
+             <tr>
+               <th>
+                #
+               </th>
+               <th>Asset Name</th>
+               <th>Asset Type</th>
+               <th> Request Date</th>
+               <th> Approval Date</th>
+               <th>Request status</th>
+               <th>Action</th>
+              
+             </tr>
+           </thead>
+           <tbody>
+             
+                                     {requests.map((request, ind) => (
+                       <tr key={request._id}>
+                         <td>{ind + 1}</td>
+                         <td>{request.name}</td>
+                         <td>{request.type}</td>
+                         <td>{request.requestDate}</td>
+                         <td>{request.approvalDate}</td>
+                         <td>{request.status1}</td>
+                         <td>
        
-      </tr>
-    </thead>
-    <tbody>
-      
-                              {requests.map((request, ind) => (
-                <tr key={request._id}>
-                  <td>{ind + 1}</td>
-                  <td>{request.name}</td>
-                  <td>{request.type}</td>
-                  <td>{request.requestDate}</td>
-                  <td>{request.approvalDate}</td>
-                  <td>{request.status1}</td>
-                  <td>
-
-                    {
-                        request.status1==='pending' &&  <Link to="#">
-                        <button  onClick={()=>handleDel(request)}   className="btn btn-ghost btn-md bg-orange-500 text-white" >Cancel</button>
-                      </Link>
-                    }
-                    {
-                        request.status1=== 'approved' &&  
-                            <PDFDownloadLink document={<PDFFile company={companyName} img={img1} date={date1}></PDFFile>}  fileName='FORM'>
-                                {({loading})=>loading ? 
-                                (<button>Loading document...</button>):
-                                 (<button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2'>Print</button>)
-                                 }
-                            </PDFDownloadLink>
-                           
+                           {
+                               request.status1==='pending' &&  <Link to="#">
+                               <button  onClick={()=>handleDel(request)}   className="btn btn-ghost btn-md bg-orange-500 text-white" >Cancel</button>
+                             </Link>
+                           }
+                           {
+                               request.status1=== 'approved' &&  
+                                   <PDFDownloadLink document={<PDFFile company={companyName} img={img1} date={date1}></PDFFile>}  fileName='FORM'>
+                                       {({loading})=>loading ? 
+                                       (<button>Loading document...</button>):
+                                        (<button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2'>Print</button>)
+                                        }
+                                   </PDFDownloadLink>
+                                  
+                                   
                             
-                     
-                    }
-                    {
-                        (request.status1 === 'approved' && request.type==='returnable' ) && <button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2' onClick={()=>handlereturn(request)}>Return</button>
-                    }
-                    {
-                      (request.status1 === 'returned' && request.type==='returnable' )&&  <button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2' disabled={request.status1==='returned'}>Return</button>
-                    }
-                
-                  </td>
-                </tr>
-              ))}
-  
-    </tbody>
-    
-    
-  </table>
-</div>
+                           }
+                           {
+                               (request.status1 === 'approved' && request.type==='returnable' ) && <button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2' onClick={()=>handlereturn(request)}>Return</button>
+                           }
+                           {
+                             (request.status1 === 'returned' && request.type==='returnable' )&&  <button className='btn  btn-ghost btn-md bg-orange-500 text-white w-1/2' disabled={request.status1==='returned'}>Return</button>
+                           }
+                       
+                         </td>
+                       </tr>
+                     ))}
+         
+           </tbody>
+           
+           
+         </table>
+       </div>
+       
+                   </div>
+                }
 
-            </div>
+
+
+
+
+      </div>
+
+  
             <div className='pagination mt-4 flex justify-center'>
                    
                    <button className='btn btn-warning mr-1' onClick={handlePrev} disabled={current === 0}>Previous</button>

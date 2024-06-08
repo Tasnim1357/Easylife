@@ -18,7 +18,7 @@ const AllRequest = () => {
   const pages = [...Array(numberOfPage).keys()];
 
 
-    const { data: requests1 = [],refetch } = useQuery({
+    const { data: requests1 = [],refetch,isLoading } = useQuery({
         queryKey: ['requests1', user?.email, searchName, searchEmail, current, itemsPerPage],
         enabled: !loading && !!user?.email,
         queryFn: async () => {
@@ -150,55 +150,66 @@ const AllRequest = () => {
          
         </div>
       </div>
-            <div>
-            <div className="overflow-x-auto">
-  <table className="table w-full">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-         #
-        </th>
-        <th>Asset Name</th>
-        <th>Asset Type</th>
-        <th>Name of Requester</th>
-        <th>Email of Requester</th>
-        <th> Request Date</th>
-        <th> Additional Note</th>
-        <th>Request status</th>
-        <th>Approve</th>
-        <th>Reject</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      
-                              {requests1.map((request, ind) => (
-                <tr key={request._id}>
-                  <td>{ind + 1}</td>
-                  <td>{request.name}</td>
-                  <td>{request.type}</td>
-                  <td>{request.userName}</td>
-                  <td>{request.userEmail}</td>
-                  <td>{request.requestDate}</td>
-                  <td>{request.note}</td>
-                  <td>{request.status1}</td>
-                  <td>
-                                <button className='btn  btn-ghost btn-md bg-orange-500   text-white w-full' disabled=
-                                {request.status1==='approved'} onClick={()=>handleapprove(request)}>Approve</button>
-                
-                  </td>
-                  
-                  <td><button className='btn  btn-ghost btn-md bg-orange-500 text-white w-3/4' onClick={()=>handleDel(request)}>Reject</button></td>
-                </tr>
-              ))}
-  
-    </tbody>
-    
-    
-  </table>
-</div>
+            <div className='mt-24'>
 
+            {
+                isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                :
+                <div className="overflow-x-auto">
+                <table className="table w-full">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>
+                       #
+                      </th>
+                      <th>Asset Name</th>
+                      <th>Asset Type</th>
+                      <th>Name of Requester</th>
+                      <th>Email of Requester</th>
+                      <th> Request Date</th>
+                      <th> Additional Note</th>
+                      <th>Request status</th>
+                      <th>Approve</th>
+                      <th>Reject</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                                            {requests1.map((request, ind) => (
+                              <tr key={request._id}>
+                                <td>{ind + 1}</td>
+                                <td>{request.name}</td>
+                                <td>{request.type}</td>
+                                <td>{request.userName}</td>
+                                <td>{request.userEmail}</td>
+                                <td>{request.requestDate}</td>
+                                <td>{request.note}</td>
+                                <td>{request.status1}</td>
+                                <td>
+                                              <button className='btn  btn-ghost btn-md bg-orange-500   text-white w-full' disabled=
+                                              {request.status1==='approved'} onClick={()=>handleapprove(request)}>Approve</button>
+                              
+                                </td>
+                                
+                                <td><button className='btn  btn-ghost btn-md bg-orange-500 text-white w-3/4' onClick={()=>handleDel(request)}>Reject</button></td>
+                              </tr>
+                            ))}
+                
+                  </tbody>
+                  
+                  
+                </table>
+              </div>
+              
+            }
+
+
+
+
+
+         
 
 
             </div>

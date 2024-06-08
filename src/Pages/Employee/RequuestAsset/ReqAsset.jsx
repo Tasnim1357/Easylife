@@ -32,7 +32,7 @@ const ReqAsset = () => {
     }
   
 
-    const { data: assets = [] } = useQuery({
+    const { data: assets = [] , isLoading} = useQuery({
         queryKey: ['assets', user?.email, searchTerm, filterType, filterStatus, current, itemsPerPage],
         enabled: !loading && !!user?.email,
         queryFn: async () => {
@@ -140,48 +140,57 @@ const ReqAsset = () => {
 
 
 
-
-            <div>
-            <div className="overflow-x-auto">
-  <table className="table w-full">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-         #
-        </th>
-        <th>Asset Name</th>
-        <th>Asset Type</th>
-        <th>Availability</th>
-        <th>Request for an asset</th>
+                <div>
+               {
+                 isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                 :
+                 <div>
+                 <div className="overflow-x-auto">
+       <table className="table w-full">
+         {/* head */}
+         <thead>
+           <tr>
+             <th>
+              #
+             </th>
+             <th>Asset Name</th>
+             <th>Asset Type</th>
+             <th>Availability</th>
+             <th>Request for an asset</th>
+            
+           </tr>
+         </thead>
+         <tbody>
+           
+                                   {assets.map((asset, ind) => (
+                     <tr key={asset._id}>
+                       <td>{ind + 1}</td>
+                       <td>{asset.name}</td>
+                       <td>{asset.type}</td>
+                       <td>{asset.status}</td>
+                       <td>
+                         <Link to="#">
+                           <button  onClick={() => open(asset)}  className="btn btn-ghost btn-md bg-orange-500 text-white" disabled={asset.status==='out-of-stock'}>Request</button>
+                         </Link>
+                       </td>
+                     </tr>
+                   ))}
        
-      </tr>
-    </thead>
-    <tbody>
+         </tbody>
+         
+         
+       </table>
+     </div>
+     {isOpen && (
+                     <Modal close={close} isOpen={isOpen} item={currentItem}  />
+                 )} 
+                 </div>
+               }
+                </div>
+
+
+
       
-                              {assets.map((asset, ind) => (
-                <tr key={asset._id}>
-                  <td>{ind + 1}</td>
-                  <td>{asset.name}</td>
-                  <td>{asset.type}</td>
-                  <td>{asset.status}</td>
-                  <td>
-                    <Link to="#">
-                      <button  onClick={() => open(asset)}  className="btn btn-ghost btn-md bg-orange-500 text-white" disabled={asset.status==='out-of-stock'}>Request</button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-  
-    </tbody>
-    
-    
-  </table>
-</div>
-{isOpen && (
-                <Modal close={close} isOpen={isOpen} item={currentItem}  />
-            )} 
-            </div>
 
 
             <div className='pagination mt-4 flex justify-center'>

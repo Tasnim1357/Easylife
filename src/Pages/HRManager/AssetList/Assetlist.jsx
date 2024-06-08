@@ -26,7 +26,7 @@ const Assetlist = () => {
   const numberOfPage = Math.ceil(count / itemsPerPage);
   const pages = [...Array(numberOfPage).keys()];
 
-  const { data: assets = [], refetch } = useQuery({
+  const { data: assets = [], refetch, isLoading } = useQuery({
     queryKey: ['assets', user?.email, current, itemsPerPage],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
@@ -183,41 +183,48 @@ useEffect(() => {
           </button>
         </div>
             </div>
-             <div className='mt-10'>
+             <div className='mt-24'>
 
+             {
+                isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                :
+                
 
             <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th></th>
-        <th>Product Name</th>
-        <th>Product Type</th>
-        <th>Product Quantity</th>
-        <th>Added Date</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-   
-    {
-        filteredAssets.map((asset,idx)=> <tr key={asset._id}>
-        <th>{idx+1}</th>
-        <td>{asset.name}</td>
-        <td>{asset.type}</td>
-        <td>{asset.quantity}</td>
-        <td>{asset.date}</td>
-        <td><Link to={`/update/${asset._id}`}><button><FaEdit className='text-green-500 text-4xl'></FaEdit></button></Link></td>
-        <td><button  onClick={()=>handleDel(asset)}><FaTrash className='text-red-500 text-3xl'></FaTrash></button></td>
-      </tr>)
-    }       
-     
-      
-    </tbody>
-  </table>
-</div>
+            <table className="table">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Product Name</th>
+                  <th>Product Type</th>
+                  <th>Product Quantity</th>
+                  <th>Added Date</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+             
+              {
+                  filteredAssets.map((asset,idx)=> <tr key={asset._id}>
+                  <th>{idx+1}</th>
+                  <td>{asset.name}</td>
+                  <td>{asset.type}</td>
+                  <td>{asset.quantity}</td>
+                  <td>{asset.date}</td>
+                  <td><Link to={`/update/${asset._id}`}><button><FaEdit className='text-green-500 text-4xl'></FaEdit></button></Link></td>
+                  <td><button  onClick={()=>handleDel(asset)}><FaTrash className='text-red-500 text-3xl'></FaTrash></button></td>
+                </tr>)
+              }       
+               
+                
+              </tbody>
+            </table>
+          </div>
+          
+             }
+
 
 
 

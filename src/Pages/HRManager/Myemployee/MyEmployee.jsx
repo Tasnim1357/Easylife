@@ -19,7 +19,7 @@ const MyEmployee = () => {
 
 
 
-    const { data: team = [],refetch } = useQuery({
+    const { data: team = [],refetch,isLoading } = useQuery({
         queryKey: ['team', user?.email ,current, itemsPerPage],
         enabled: !loading && !!user?.email,
         queryFn: async () => {
@@ -101,47 +101,55 @@ const MyEmployee = () => {
             <title>EasyLife | My Employees</title>
           </Helmet>
             <h1 className='text-4xl font-bold text-center my-5'>My Employee List</h1>
-            <div className="overflow-x-auto">
-  <table className="table w-full">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-         #
-        </th>
-        <th>Employee Image</th>
-        <th>Employee Name</th>
-       
-        <th>Action</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      
-                              {team.map((employee,idx) => (
-                <tr key={employee._id}>
-                  <td>
-             
-                       {idx+1}         
-                    </td>
-                  <td><img src={employee.image} className='w-16 rounded-xl h-16' alt="" /></td>
-                  <td>{employee.name}</td>
-           
-                  <td>
-                    <Link to="#">
-                      <button  className="btn btn-ghost btn-md bg-orange-500 text-white" onClick={()=>handleDel(employee)}  >Remove from the Team</button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-  
-    </tbody>
-    
-    
-  </table>
-  
-</div>
+            <div className='mt-24'>
 
+            {
+                isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                :
+                <div className="overflow-x-auto">
+                <table className="table w-full">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>
+                       #
+                      </th>
+                      <th>Employee Image</th>
+                      <th>Employee Name</th>
+                     
+                      <th>Action</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                                            {team.map((employee,idx) => (
+                              <tr key={employee._id}>
+                                <td>
+                           
+                                     {idx+1}         
+                                  </td>
+                                <td><img src={employee.image} className='w-16 rounded-xl h-16' alt="" /></td>
+                                <td>{employee.name}</td>
+                         
+                                <td>
+                                  <Link to="#">
+                                    <button  className="btn btn-ghost btn-md bg-orange-500 text-white" onClick={()=>handleDel(employee)}  >Remove from the Team</button>
+                                  </Link>
+                                </td>
+                              </tr>
+                            ))}
+                
+                  </tbody>
+                  
+                  
+                </table>
+                
+              </div>
+            }
+           
+
+            </div>
 
 
 <div className='pagination mt-4 flex justify-center'>

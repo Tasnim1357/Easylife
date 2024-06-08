@@ -24,7 +24,7 @@ const AddEmployee = () => {
 
     const [selectedEmployees, setSelectedEmployees] = useState([]);
     
-    const { data: employees = [],refetch } = useQuery({
+    const { data: employees = [],refetch, isLoading } = useQuery({
         queryKey: ['employees', user?.email ,current, itemsPerPage],
         enabled: !loading && !!user?.email,
         queryFn: async () => {
@@ -42,7 +42,7 @@ const AddEmployee = () => {
 
   
       useEffect(() => {
-        fetch(`http://localhost:5000/employeeCount`)
+        fetch(`https://assignment12-server-gamma-six.vercel.app/employeeCount`)
             .then(res => res.json())
             .then(data => setCount(data.count));
     }, []);
@@ -166,53 +166,59 @@ const AddEmployee = () => {
 
 
             <div className='mt-10'>
-            <div className="overflow-x-auto">
-  <table className="table w-full">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>
-         #
-        </th>
-        <th>Employee Image</th>
-        <th>Employee Name</th>
-        <th>Member Type</th>
-        <th>Request for an asset</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-      
-                              {employees.map((asset) => (
-                <tr key={asset._id}>
-                  <td>
-                  <input
-               type="checkbox"
-               checked={selectedEmployees.includes(asset._id)}
-               onChange={() => handleSelectEmployee(asset._id)}
-               disabled={asset.logo}
+
+            {
+                isLoading? <div className='flex justify-center'><span className="loading loading-bars loading-lg"></span></div>
+                :
+                <div className="overflow-x-auto">
+                <table className="table w-full">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>
+                       #
+                      </th>
+                      <th>Employee Image</th>
+                      <th>Employee Name</th>
+                      <th>Member Type</th>
+                      <th>Request for an asset</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                                            {employees.map((asset) => (
+                              <tr key={asset._id}>
+                                <td>
+                                <input
+                             type="checkbox"
+                             checked={selectedEmployees.includes(asset._id)}
+                             onChange={() => handleSelectEmployee(asset._id)}
+                             disabled={asset.logo}
+                            
+                          />
+                                  </td>
+                                <td><img src={asset.image} className='w-16 rounded-xl h-16' alt="" /></td>
+                                <td>{asset.name}</td>
+                                <td>Employee</td>
+                                <td>
+                                  <Link to="#">
+                                    <button  className="btn btn-ghost btn-md bg-orange-500 text-white" onClick={()=>handleAdd(asset)} disabled={asset.logo}  >Add to the Team</button>
+                                  </Link>
+                                </td>
+                              </tr>
+                            ))}
+                
+                  </tbody>
+                  
+                  
+                </table>
+                <div>
+                  <button className='btn btn-ghost btn-md bg-orange-500 text-white'    onClick={handleAddSelected}>Add selected members To the Team</button>
+                </div>
+              </div>
               
-            />
-                    </td>
-                  <td><img src={asset.image} className='w-16 rounded-xl h-16' alt="" /></td>
-                  <td>{asset.name}</td>
-                  <td>Employee</td>
-                  <td>
-                    <Link to="#">
-                      <button  className="btn btn-ghost btn-md bg-orange-500 text-white" onClick={()=>handleAdd(asset)} disabled={asset.logo}  >Add to the Team</button>
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-  
-    </tbody>
-    
-    
-  </table>
-  <div>
-    <button className='btn btn-ghost btn-md bg-orange-500 text-white'    onClick={handleAddSelected}>Add selected members To the Team</button>
-  </div>
-</div>
+            }
 
             </div>
 

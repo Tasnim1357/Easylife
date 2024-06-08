@@ -44,7 +44,7 @@ const Banner = () => {
       />
               </span></p>
             <p className='text-white text-xs md:text-2xl font-light font-poppins'>Efficiently manage assets with  <br /><span className='font-poppins font-semibold md:text-4xl text-lg'> our intuitive asset management system</span></p>
-            <Link><button className='btn bg-[#FFBD2B] text-lg mt-6'>Join as HR Manager</button></Link>
+            <Link to={`/joinhr`}><button className='btn bg-[#FFBD2B] text-lg mt-6'>Join as HR Manager</button></Link>
         </div>
     </div>
     </div></SwiperSlide>
@@ -65,7 +65,7 @@ const Banner = () => {
       />
               </span>
         </span></p>
-            <Link><button className='btn bg-[#FFBD2B] text-lg mt-6'>Join as an Employee</button></Link>
+            <Link to={`/joinemployee`}><button className='btn bg-[#FFBD2B] text-lg mt-6'>Join as an Employee</button></Link>
         </div>
     </div>
     </div></SwiperSlide>
