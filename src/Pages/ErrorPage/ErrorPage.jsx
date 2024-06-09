@@ -8,7 +8,7 @@ const ErrorPage = () => {
     return (
         <div id="error-page" className='flex justify-center items-center h-[80vh] p-3'>
            <Helmet>
-            <title>ArtRoof | Errorpage</title>
+            <title>EasyLife | Errorpage</title>
           </Helmet>
     <div className='space-y-5'>
     <h1 className='text-6xl works-sans font-bold'>Oops!</h1>
