@@ -19,11 +19,13 @@ import MyEmployee from "../Pages/HRManager/Myemployee/MyEmployee";
 import MyTeam from "../Pages/Employee/MyTeam/MyTeam";
 import EmpProfile from "../Pages/Employee/EmployeeProfile/EmpProfile";
 import HRProfile from "../Pages/HRManager/HRProfile/HRProfile";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <Root></Root>,
+      errorElement:<ErrorPage></ErrorPage>,
       children:[
         {
             path:'/',
