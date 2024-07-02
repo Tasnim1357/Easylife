@@ -4,23 +4,26 @@
 
 ## Admin username : Tasnim
 ## Admin password: Ma123456
-## Selected Category: Assignment12_category_0007
+## Selected Category: Asset Management System
+
+## Technologies: HTML,CSS,React,Firebase Authentication,Node JS, Express JS,MongoDB
+
+### About EasyLife
+
+Welcome to EasyLife, your ultimate solution for efficient asset management. Our platform streamlines the tracking, maintenance, and optimization of company assets, ensuring seamless operations and maximum productivity. With EasyLife, managing assets becomes hassle-free, allowing you to focus on what truly matters—growing your business. Discover the ease and effectiveness of asset management with EasyLife today!
 
 ## Features and Characteristics:
-* This website has active navbar link.
-* There is a Swiper Slider in Banner section.
 * Different Navbar for Common Users, Employee and HR Manager.
 * An user can sign up as an Employee or HR Manager
 * HR Manager can add assets and also see the asset list of the company.
 * HR Manager can see all the requested assets from employees.
-* HR Manager can add any employee to his team.
-* HR Manager will be able to see his added employee list.
-* There is a update profile section for HR Manager.
+* HR Manager can add any employee to his team..
 * As an Employee, user can request for assets to HR Manager.
-* After Log in users user image and name will be visible in navbar and a Logout button.
-* This website also includes  Extra sections for both Employee and HR Manager.
-* Employees can update their profile
-* In My Team page, employees can see his/her team members.
-* This website includes a footer section with information where users can contact with us if there is any need.
+* HR manager can complement payment with Stripe.
 * It is also Mobile,Tablet responsive!!!
   
+## Implement Following Tasks to clone and run my repository code:
+* Clone repository using git clone command
+* Install npm packages : npm i 
+* Run the project with : npm run dev
+
